@@ -1,0 +1,242 @@
+<table>
+    <thead>
+        <tr>
+            <th><strong>नाम</strong></th>
+            <th><strong>प्रदेश</strong></th>  
+            <th><strong>जिल्ला</strong></th>
+            <th><strong>पालिका</strong></th>
+            <th><strong>वडा</strong></th>
+            <th><strong>टोल</strong></th>  
+            <th><strong>सम्पर्क मोबाइल नम्बर</strong></th>
+            <th><strong>इमेल</strong></th>                    
+            <th><strong>लिङ्ग</strong></th>                    
+            <th><strong>जन्ममिति</strong></th>                    
+            <th><strong>शिक्षा</strong></th>                    
+            <th><strong>परिवारमा कुल सदस्य संख्या</strong></th>
+            <th><strong>परिवारमा कुल महिला संख्या</strong></th>                    
+            <th><strong>परिवारमा कुल पुरुष संख्या</strong></th>                    
+            <th><strong>परिवारमा कुल अन्य संख्या</strong></th>
+            <th><strong>परियोजनाको किसिम</strong></th>                    
+            <th><strong>परियोजनाको नाम</strong></th>
+            <th><strong>परियोजनाको ठेगाना (प्रदेश)</strong></th> 
+            <th><strong>परियोजनाको ठेगाना (जिल्ला)</strong></th>                    
+            <th><strong>परियोजनाको ठेगाना (पालिका)</strong></th>                    
+            <th><strong>परियोजनाको ठेगाना (वडा)</strong></th>                      
+            <th><strong>परियोजनाको ठेगाना (टोल)</strong></th>
+            <th><strong>परियोजनाको उदेश्य</strong></th>
+            <th><strong>सुचारु वा विस्तार गर्नु को कारण</strong></th>
+            <th><strong>उत्पादन हुने बस्तु वा सेवा</strong></th>
+            <th><strong>तपाइंको व्यवसाय कुन क्षेत्र अन्तर्गत पर्दछ?</strong></th>
+            <th><strong>आबश्यक पर्ने सिप/तालिम र सो को उपलब्धता</strong></th>
+            <th><strong>आवश्यक कच्चापदार्थ र सो को उपलब्धता</strong></th>
+            <th><strong>आवश्यक कर्मचारी / कामदार</strong></th>
+            <th><strong>मासिक जम्मा तलब</strong></th>
+            <th><strong>संचालन हुने क्षमता</strong></th>
+            <th><strong>उत्पादन क्षमता</strong></th>
+            <th><strong>व्यवसाय संचालनको कुल लागत</strong></th>
+            <th><strong>आवश्यक वित्तीय श्रोत (बैंक ऋण ) रु.</strong></th>
+            <th><strong>आवश्यक वितिय श्रोत (स्वपूंजी ) रु.</strong></th>
+            <th><strong>अपेक्षित ब्याजदर %</strong></th>
+            <th><strong>किस्ता र ऋण भुक्तानी प्रक्रिया</strong></th>
+            <th><strong>ऋणको सुरक्षणको लागि रहने धितोको विवरण</strong></th>
+            <th><strong>ऋण को बर्गिकरण</strong></th>
+            <th><strong>उत्पादित बस्तुको बजार</strong></th>
+            <th><strong>के तपाइंले नेपाल सरकारको मापदण्ड अनुरुप वार्षिक अडिट,
+            कर चुक्ताको प्रमाणमात्र र कम्पनीको अध्यावधि नियमित रूपमा गर्नु भएको छ?</strong></th>
+            <th><strong>तपाईंको व्यवसाय संचालनमा अरु कुनै समस्या छ?</strong></th>
+            <th><strong>तपाईंलाई पायक पर्ने बैंकको नाम</strong></th>
+            <th><strong>पायक पर्ने बैंकको शाखा</strong></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($karmabhomi as $karmabhomi)
+        <tr>
+            <td>{{ $karmabhomi->name }}</td>
+            <td>{{ $karmabhomi->getPradesh->name }}</td>
+            <td>{{ $karmabhomi->getDistrict->name }}</td>
+            <td>{{ $karmabhomi->getMunicipality->name }}</td>
+            <td>{{ $karmabhomi->ward }}</td>
+            <td>{{ $karmabhomi->tole }}</td>
+            <td>{{ $karmabhomi->number }}</td>
+            <td>{{ $karmabhomi->email }}</td>
+            <td>{{ $karmabhomi->gender }}</td>
+            <td>{{ $karmabhomi->date }}</td>
+            <td>{{ $karmabhomi->education }}</td>
+            <td>{{ $karmabhomi->family_total }}</td>
+            <td>{{ $karmabhomi->family_female }}</td>
+            <td>{{ $karmabhomi->family_male }}</td>
+            <td>{{ $karmabhomi->family_others }}</td>
+            <td>{{ $karmabhomi->ob2 }}</td>
+            <td>{{ $karmabhomi->ob3 }}</td>
+            <td>{{ $karmabhomi->getBusinessPradesh->name }}</td>
+            <td>{{ $karmabhomi->getBusinessDistrict->name }}</td>
+            <td>{{ $karmabhomi->getBusinessMunicipality->name }}</td>
+            <td>{{ $karmabhomi->business_ward }}</td>
+            <td>{{ $karmabhomi->business_tole }}</td>
+            <td>{{ $karmabhomi->business_aim }}</td>
+            <td>{{ $karmabhomi->business_reason }}</td>
+            <td>{{ $karmabhomi->ob4 }}</td>
+            <td>{{ $karmabhomi->ob5 }}</td>
+            <td>{{ $karmabhomi->ob8 }}</td>
+            <td>{{ $karmabhomi->ob7 }}</td>
+            <td>{{ $karmabhomi->ob10 }}</td>
+            <td>{{ $karmabhomi->total_salary }}</td>
+            <td>{{ $karmabhomi->ob11 }}</td>
+            <td>{{ $karmabhomi->ob12 }}</td>
+            <td>{{ $karmabhomi->ob13 }}</td>
+            <td>{{ $karmabhomi->ob20 }}</td>
+            <td>{{ $karmabhomi->ob21 }}</td>
+            <td>{{ $karmabhomi->expected_interest }}</td>
+            <td>{{ $karmabhomi->loan_payment_type }}</td>
+            <td>{{ $karmabhomi->ob22 }}</td>
+            <td>{{ $karmabhomi->loan_category }}</td>
+            <td>{{ $karmabhomi->ob16 }}</td>
+            <td>{{ $karmabhomi->ob23 }}</td>
+            <td>{{ $karmabhomi->ob24 }}</td>
+            <td>{{ $karmabhomi->bank_name }}</td>
+            <td>{{ $karmabhomi->bank_branch }}</td>
+            <td> 
+                <table>
+                <tr>
+                    <th><strong>वार्षिक उत्पादन क्षमता (उत्त्पादित बस्तु)</strong></th>
+                    <th><strong>वार्षिक उत्पादन क्षमता (परिमाण)</strong></th>
+                    <th><strong>वार्षिक उत्पादन क्षमता (उत्पादन मूल्य)</strong></th>
+                    <th><strong>वार्षिक उत्पादन क्षमता (कैफियत)</strong></th>
+                </tr>
+                     
+                @foreach($karmabhomi->yearlyProduction as $production)
+                    <tr>      
+                        <td>{{ $production->product }}</td> 
+                        <td>{{ $production->qty }}</td>
+                        <td>{{ $production->price }}</td>
+                        <td>{{ $production->remarks }}</td>
+                    </tr>
+                @endforeach
+                </table>
+
+                <table>
+                    <tr>
+                        <th><strong>खरिद गरिने मेशिनरी (मेशिनेरिको नाम)</strong></th>
+                        <th><strong>खरिद गरिने मेशिनरी (लागत)</strong></th>
+                        <th><strong>खरिद गरिने मेशिनरी (उपलब्दता)</strong></th>
+                        <th><strong>खरिद गरिने मेशिनरी (कैफियत)</strong></th>
+                    </tr>
+                        
+                    @foreach($karmabhomi->machinery as $machine)
+                        <tr>        
+                            <td>{{ $machine->machine_name }}</td> 
+                            <td>{{ $machine->total_expense }}</td>
+                            <td>{{ $machine->availability }}</td>
+                            <td>{{ $machine->remarks }}</td>
+                        </tr>
+                        
+                   @endforeach
+                    </table>
+
+                    <table>
+                        <tr>
+                            <th><strong>स्थिर पूंजी/सम्पत्ति (स्थिर सम्पत्ति)</strong></th>
+                            <th><strong> स्थिर पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
+                            <th><strong> स्थिर पूंजी/सम्पत्ति (विवरण)</strong></th>
+                            <th><strong> स्थिर पूंजी/सम्पत्ति (कैफियत)</strong></th>
+                        </tr>      
+                        @foreach($karmabhomi->fixedCapital as $fixed_capital)
+                            <tr>          
+                                <td>{{ $fixed_capital->fixed_property }}</td> 
+                                <td>{{ $fixed_capital->approx_price }}</td>
+                                <td>{{ $fixed_capital->details }}</td>
+                                <td>{{ $fixed_capital->remarks }}</td> 
+                            </tr>
+                       @endforeach
+                        </table>
+
+                        <table>
+            
+                            <th><strong>चालु पूंजी/सम्पत्ति (चालु सम्पत्ति)</strong></th>
+                            <th><strong> चालु पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
+                            <th><strong> चालु पूंजी/सम्पत्ति (विवरण)</strong></th>
+                            <th><strong> चालु पूंजी/सम्पत्ति (कैफियत)</strong></th>
+                  
+                        @foreach($karmabhomi->runningCapital as $running_capital)
+                            <tr>          
+                                <td>{{ $running_capital->running_property }}</td> 
+                                <td>{{ $running_capital->approx_price }}</td>
+                                <td>{{ $running_capital->details }}</td>
+                                <td>{{ $running_capital->remarks }}</td> 
+                            </tr>
+                       @endforeach
+                        </table>
+
+                        <table>
+                            <tr>
+                                <th><strong>प्रति इकाई खर्चको विवरण (नाम)</strong></th>
+                                <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित मूल्य)</strong></th>
+                                <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित बार्षिक उत्पादन)</strong></th>
+                                <th><strong> प्रति इकाई खर्चको विवरण (जम्मा खर्च)</strong></th>
+                            </tr>      
+                            @foreach($karmabhomi->unitExpense as $unit_expense)
+                                <tr>          
+                                    <td>{{ $unit_expense->name }}</td> 
+                                    <td>{{ $unit_expense->approx_price }}</td>
+                                    <td>{{ $unit_expense->approx_annual_production }}</td>
+                                    <td>{{ $unit_expense->total_expense }}</td> 
+                                </tr>
+                           @endforeach
+                            </table>
+
+                            <table>
+                                <tr>
+                                    <th><strong>प्रति इकाई आम्दानीको विवरण (नाम)</strong></th>
+                                    <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित मूल्य)</strong></th>
+                                    <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित बार्षिक बिक्रि)</strong></th>
+                                    <th><strong> प्रति इकाई आम्दानीको विवरण (जम्मा खर्च)</strong></th>
+                                </tr>      
+                                @foreach($karmabhomi->unitIncome as $unit_income)
+                                    <tr>          
+                                        <td>{{ $unit_income->name }}</td> 
+                                        <td>{{ $unit_income->approx_price }}</td>
+                                        <td>{{ $unit_income->approx_annual_sale }}</td>
+                                        <td>{{ $unit_income->total_expense }}</td> 
+                                    </tr>
+                               @endforeach
+                                </table>
+
+                                <table>
+                                    <tr>
+                                        <th><strong> बार्षिक संचालन खर्च (नाम)</strong></th>
+                                        <th><strong> बार्षिक संचालन खर्च  (अनुमानित मूल्य)</strong></th>
+                                        <th><strong> बार्षिक संचालन खर्च  (अनुमानित बार्षिक बिक्रि)</strong></th>
+                                        <th><strong> बार्षिक संचालन खर्च  (जम्मा खर्च)</strong></th>
+                                    </tr>      
+                                    @foreach($karmabhomi->annualOperationCost as $annual_cost)
+                                        <tr>          
+                                            <td>{{ $annual_cost->name }}</td> 
+                                            <td>{{ $annual_cost->approx_price }}</td>
+                                            <td>{{ $annual_cost->approx_annual_sale }}</td>
+                                            <td>{{ $annual_cost->total_expense }}</td> 
+                                        </tr>
+                                   @endforeach
+                                    </table>
+            </td>
+            <td>
+                
+            </td>
+            <td> 
+                
+            </td>
+            <td> 
+                
+            </td>
+            <td> 
+                
+            </td>
+            <td> 
+                
+            </td>
+            <td> 
+                
+            </td>                                                        
+        </tr>
+        @endforeach
+    </tbody>
+</table>

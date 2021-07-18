@@ -1,0 +1,356 @@
+    .event-img img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.event-caption.ok h4{
+font-size : 14px;
+}
+.event-caption h4 {
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px;
+    color: black;
+}
+
+.container.mt-top {
+    padding: 40px 30px;
+}
+i.fas.fa-home {
+    color: white;
+}
+.bred-crumb {
+    color: red;
+}
+    .job-list-desc h3 {
+    margin-top: 9px;
+    font-size: 14px;
+}
+.list-img img {
+    width: 100%;
+    height: 85px;
+    object-fit: contain;
+}
+
+.job-listing {
+    margin-bottom: 15px;
+}
+.event-list {
+    padding: 15px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+}
+.job-list-desc small i {
+    color: #03793e;
+    font-weight: 700;
+}
+.row.box-shadow {
+    margin: 5px;
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+        height: 92px;
+}
+
+span.location i {
+    color: #0e5dae;
+    font-size: 15px;
+    margin-right: 5px;
+}
+span.date i {
+    color: #0e5dae;
+    font-size: 15px;
+    margin-right: 5px;
+}
+.project-lists {
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+}
+.projec-cap {
+    padding: 5px;
+}
+.projec-cap h4 {
+    line-height: 1.7;
+    color: black;
+    text-align: justify;
+    padding: 0 5px;
+}
+.project-lists {
+    box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(0,0,0,.23);
+    height: 385px;
+    border-bottom: 3px solid green
+}
+.projec-cap {
+    padding: 0 6px;
+}
+.projec-cap h4 {
+    line-height: 1.7;
+    font-weight: 700;
+}
+.project-lists hr {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 0;
+    border-top: 3px solid #d00000;
+    width: 40%;
+}
+.projec-img img {
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+}
+.xyz.col-md-12 a {
+    background: #03793e;
+    color: white;
+    font-weight: 800;
+}
+.job-list-desc.main h3 {
+    line-height: 1.5;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+span.location {
+    float: right;
+}
+.single_wrap ul li {
+    list-style: disc;
+    margin: 0 25px;
+    color: black;
+}
+.job_content strong {
+    color: black;
+}
+.job_content span {
+    float: right;
+    color: #03793e;
+}
+.job_sumary .listbtn a {
+    color: white;
+    background: #03793e;
+    border-color: green;
+}
+.jobs_conetent.tsa h4 {
+    font-weight: 800 !important;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+.location i {
+    color: #1e6eb3;
+    font-size: 20px;
+    font-weight: 700;
+}
+.location p {
+    color: black !important;
+}
+.job_details_area .single_jobs {
+    margin-top: 45px;
+}
+
+/*Message*/
+.pull-right{
+  float:right;
+}
+.pull-left{
+  float:left;
+}
+#fbcomment{
+  background:#fff;
+  border: 1px solid #dddfe2;
+  border-radius: 3px;
+  color: #4b4f56;
+  padding:50px;
+}
+.header_comment{
+    font-size: 14px;
+    overflow: hidden;
+    border-bottom: 1px solid #e9ebee;
+    line-height: 25px;
+    margin-bottom: 24px;
+    padding: 10px 0;
+}
+.sort_title{
+  color: #4b4f56;
+}
+.sort_by{
+  background-color: #f5f6f7;
+  color: #4b4f56;
+  line-height: 22px;
+  cursor: pointer;
+  vertical-align: top;
+  font-size: 12px;
+  font-weight: bold;
+  vertical-align: middle;
+  padding: 4px;
+  justify-content: center;
+  border-radius: 2px;
+  border: 1px solid #ccd0d5;
+}
+.count_comment{
+  font-weight: 600;
+}
+.body_comment{
+    padding: 0 8px;
+    font-size: 14px;
+    display: block;
+    line-height: 25px;
+    word-break: break-word;
+}
+.avatar_comment{
+  display: block;
+}
+.avatar_comment img{
+  height: 48px;
+  width: 48px;
+}
+.box_comment{
+	display: block;
+    position: relative;
+    line-height: 1.358;
+    word-break: break-word;
+    border: 1px solid #d3d6db;
+    word-wrap: break-word;
+    background: #fff;
+    box-sizing: border-box;
+    cursor: text;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 16px;
+	padding: 0;
+}
+.box_comment textarea{
+	min-height: 40px;
+	padding: 12px 8px;
+	width: 100%;
+	border: none;
+	resize: none;
+}
+.box_comment textarea:focus{
+  outline: none !important;
+}
+.box_comment .box_post{
+	border-top: 1px solid #d3d6db;
+    background: #f5f6f7;
+    padding: 8px;
+    display: block;
+    overflow: hidden;
+}
+.box_comment label{
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 11px;
+  color: #90949c;
+  line-height: 22px;
+}
+.box_comment button{
+  margin-left:8px;
+  background-color: #4267b2;
+  border: 1px solid #4267b2;
+  color: #fff;
+  text-decoration: none;
+  line-height: 22px;
+  border-radius: 2px;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  text-align: center;
+}
+.box_comment button:hover{
+  background-color: #29487d;
+  border-color: #29487d;
+}
+.box_comment .cancel{
+	margin-left:8px;
+	background-color: #f5f6f7;
+	color: #4b4f56;
+	text-decoration: none;
+	line-height: 22px;
+	border-radius: 2px;
+	font-size: 14px;
+	font-weight: bold;
+	position: relative;
+	text-align: center;
+  border-color: #ccd0d5;
+}
+.box_comment .cancel:hover{
+	background-color: #d0d0d0;
+	border-color: #ccd0d5;
+}
+.box_comment img{
+  height:16px;
+  width:16px;
+}
+.box_result{
+  margin-top: 24px;
+}
+.box_result .result_comment h4{
+  font-weight: 600;
+  white-space: nowrap;
+  color: #365899;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.358;
+  margin:0;
+}
+.box_result .result_comment{
+  display:block;
+  overflow:hidden;
+  padding: 0;
+}
+.child_replay{
+	border-left: 1px dotted #d3d6db;
+	margin-top: 12px;
+	list-style: none;
+	padding:0 0 0 8px
+}
+.reply_comment{
+	margin:12px 0;
+}
+.box_result .result_comment p{
+  margin: 4px 0;
+  text-align:justify;
+}
+.box_result .result_comment .tools_comment{
+  font-size: 12px;
+  line-height: 1.358;
+}
+.box_result .result_comment .tools_comment a{
+  color: #4267b2;
+  cursor: pointer;
+  text-decoration: none;
+}
+.box_result .result_comment .tools_comment span{
+  color: #90949c;
+}
+.body_comment .show_more{
+  background: #3578e5;
+  border: none;
+  box-sizing: border-box;
+  color: #fff;
+  font-size: 14px;
+  margin-top: 24px;
+  padding: 12px;
+  text-shadow: none;
+  width: 100%;
+  font-weight:bold;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 2px;
+}
+.col-md-3.mt-top {
+    margin-bottom: 25px;
+}
+.breadCrumb {
+    line-height: 26px;
+        font-size: 20px;
+}
+.breadCrumb a {
+    font-size: 20px !important;
+}
+.card-body {
+    background: white;
+}
+.form-group label {
+    font-size: 17px;
+    color: black !important;
+}
+h4.pt-sm-2.pb-1.mb-0.text-nowrap {
+    color: black !important;
+}

@@ -1,0 +1,3 @@
+[13-Jan-2021 12:14:37 UTC] PHP Fatal error:  Class 'Illuminate\Database\Migrations\Migration' not found in /home/etechsol/public_html/garikhanne/database/migrations/2014_10_12_000000_create_users_table.php on line 7
+[13-Jan-2021 12:14:54 UTC] PHP Fatal error:  Class 'Illuminate\Database\Migrations\Migration' not found in /home/etechsol/public_html/garikhanne/database/migrations/2014_10_12_000000_create_users_table.php on line 7
+[13-Jan-2021 12:16:08 UTC] PHP Fatal error:  Class 'Illuminate\Database\Migrations\Migration' not found in /home/etechsol/public_html/garikhanne/database/migrations/2014_10_12_000000_create_users_table.php on line 7
