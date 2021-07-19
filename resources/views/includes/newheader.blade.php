@@ -99,7 +99,7 @@
 							</p>
 						</div> --}}
 						<div class=" col-lg-2 col-md-2 col-xs-2 notice_title ">
-							<h4>Notices </h4> &nbsp;<span class="fa fa-caret-right fa-2x"></span>
+							<h4>Notices</h4> &nbsp;<span class="fa fa-caret-right fa-2x"></span>
 						</div>
 						<div class="col-md-6 col-lg-6 col-sm-8 col-xs-6 notice_slider ">
 							@foreach($notices as $n)
@@ -110,6 +110,9 @@
 							<img src="/images/whatsapp.png" height="20px" width="20px">
 							<a href='https://wa.me/{{ $setting->whatsapp_number }}'
 								target="_blank">{{ $setting->whatsapp_number }}</a>
+						</div>
+						<div class="col-md-2 col-sm-3 col-xs-4 login lh pl-0 pr-0 ">
+							<a href="{{ url('pdf') }}"><span>Downloads</span></a>
 						</div>
 
 						<div class="col-md-2 col-sm-3 col-xs-4 login lh pl-0 pr-0 ">
@@ -224,8 +227,7 @@
 											i>-->
 													<li><a href="{{url('garikhane-app-form')}}">परियोजनाको आवेदन
 															फारम</a></li>
-													<li><a href="{{url('project/idea/bank?project_id=0')}}">प्रोजेक्ट
-															आईडिया बैंक</a></li>
+													<li><a href="{{url('project/idea/bank?project_id=0')}}">प्रोजेक्ट आइडिया बैंक</a></li>
 													<li><a href="{{url('entrepreneurship')}}">उद्यमशीलताको प्रक्रिया</a>
 													</li>
 													{{-- <li><a href="{{url('project/idea/bank?project_id=1')}}">लगानीको
@@ -253,8 +255,8 @@
 										</li> --}}
 										<li class="{{ (request()->is('events')) ? 'active' : '' }}"><a
 												href="{{url('events')}}">कार्यक्रम</a></li>
-										<li class="{{ (request()->is('pdf')) ? 'active' : '' }}"><a
-												href="{{url('pdf')}}">डाउनलोड</a></li>
+										{{-- <li class="{{ (request()->is('pdf')) ? 'active' : '' }}"><a
+												href="{{url('pdf')}}">डाउनलोड</a></li> --}}
 
 										<!--<li class="dropdown">-->
 										<!--    <a href="#" class="dropdown-toggle" data-toggle="dropdown"-->
@@ -274,7 +276,7 @@
 
 												<li><a href="{{url('image-category')}}">तस्बिर पुस्तिका</a></li>
 												<li><a href="{{url('notice')}}">सूचना</a></li>
-												<li><a href="{{url('press')}}">प्रेस बिज्ञप्ति</a></li>
+												<li><a href="{{url('press')}}"> प्रेस बिज्ञप्ति</a></li>
 												<li><a href="{{url('news')}}">समाचार</a></li>
 
 
@@ -306,23 +308,15 @@
 						<div class="col-md-2 col-sm-3 col-xs-4 top-right-btn">
 							<ul class="top-right-icon">
 
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->facebook }}"><i
-											class="fab fa-facebook-square text-success"></i></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->instagram }}"><i
-											class="fab fa-instagram-square text-success"></i></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->twitter }}"><i
-											class="fab fa-twitter-square text-success"></i></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->linkedin }}"><i class="fab fa-linkedin text-success"></i></a>
-								</li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->youtube }}"><i
-											class="fab fa-youtube-square text-success"></i></a></li>
-								<li><a class="top-right-icons" target="_blank" href="mailto:{{ $setting->gmail }}"><i class="fas fa-envelope text-success"></i></a>
-								</li>
-
-								</li>
+								<li><a class="top-right-icons" target="_blank" href="{{ $setting->facebook }}"><img src="/images/social_icons/facebook.png"></a></li>
+								<li><a class="top-right-icons" target="_blank" href="{{ $setting->instagram }}"><img src="/images/social_icons/instagram.png"></a></li>
+								<li><a class="top-right-icons" target="_blank" href="{{ $setting->twitter }}"><img src="/images/social_icons/twitter.png"></a></li>
+								<li><a class="top-right-icons" target="_blank" href="{{ $setting->linkedin }}"><img src="/images/social_icons/linkedin.png"></a></li>
+								<li><a class="top-right-icons" target="_blank" href="{{ $setting->youtube }}"><img src="/images/social_icons/youtube.png"></a></li>
+								<li><a class="top-right-icons" target="_blank" href="mailto:{{ $setting->gmail }}"><img src="/images/social_icons/gmail.png"></a></li>
 							</ul>
 							<ul>
-								<li><a href="{{ url('garikhane-form') }}" class=" btn btn-outline-secondary red-btn">परियोजना को फारम</a></li>
+								<li><a href="{{ url('garikhane-form') }}" class=" btn btn-outline-secondary red-btn">परियोजनाको फारम</a></li>
 							</ul>
 						</div>
 

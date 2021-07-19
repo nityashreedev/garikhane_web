@@ -15,10 +15,10 @@
     background-position: 0 5%;
     background-repeat: no-repeat;">
         <div class="shadow-main">
-            <h1> व्यवस्थापन समूह </h1>
+            <h1> व्यवस्थापन (सचिवालय) </h1>
             <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                <li><a>व्यवस्थापन समूह</a></li>
+                <li><a>व्यवस्थापन सचिवालय</a></li>
             </ul>
         </div>
     </div>

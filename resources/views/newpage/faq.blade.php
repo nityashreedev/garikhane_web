@@ -57,10 +57,10 @@ h4.panel-title {
     background-position: 0 5%;
     background-repeat: no-repeat;">
     <div class="shadow-main">
-        <h1> बारम्बार सोधिने प्रस्नहरू </h1>
+        <h1> बारम्बार सोधिने प्रश्नहरु </h1>
         <ul class="breadcrumb breadcrumb-news">
             <li><a href="{{url('/')}}">HOME</a></li>
-            <li><a>बारम्बार सोधिने प्रस्नहरू</a></li>
+            <li><a>बारम्बार सोधिने प्रश्नहरु</a></li>
 
         </ul>
     </div>

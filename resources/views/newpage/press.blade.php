@@ -22,10 +22,10 @@
     background-position: 0 5%;
     background-repeat: no-repeat;">
     <div class="shadow-main">
-        <h1> प्रेस </h1>
+        <h1> प्रेस बिज्ञप्ति</h1>
         <ul class="breadcrumb breadcrumb-news">
             <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a>प्रेस</a></li>
+            <li><a> प्रेस बिज्ञप्ति</a></li>
         </ul>
     </div>
 </div>

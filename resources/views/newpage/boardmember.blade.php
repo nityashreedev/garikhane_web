@@ -15,10 +15,10 @@
     background-position: 0 5%;
     background-repeat: no-repeat;">
         <div class="shadow-main">
-    <h1>संस्थापक/संचालकहरु</h1>
+    <h1>विशेष समिति</h1>
             <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                <li><a>संस्थापक/संचालकहरु</a></li>
+                <li><a>विशेष समिति</a></li>
             </ul>
         </div>
     </div>

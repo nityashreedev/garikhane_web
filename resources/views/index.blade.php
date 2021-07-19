@@ -33,7 +33,7 @@
                                                 <!--<h4>{{$banner->title}}</h4>-->
                                                 <h2>{{strip_tags($banner->text)}}</h2>
                                                 <div class="buttons">
-                                                    <a href="{{url('contactus')}}" class="red-btn red-btn-0">सम्पर्क गर्नुहोस</a>
+                                                    <a href="{{url('contactus')}}" class="red-btn red-btn-0">सम्पर्क गर्नुहोस्</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -49,7 +49,7 @@
                                                 <!--<h4>{{$banner->title}}</h4>-->
                                                 <h2>{{strip_tags($banner->text)}}</h2>
                                                 <div class="buttons">
-                                                    <a href="{{url('contactus')}}" class="red-btn red-btn-0">सम्पर्क गर्नुहोस</a>
+                                                    <a href="{{url('contactus')}}" class="red-btn red-btn-0">सम्पर्क गर्नुहोस्</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -89,7 +89,7 @@
                         <h2 class="title-text">{{$setting->title}}</h2>
 
                         <div class="wave-line"></div>
-                            <p>{!! substr($setting->description,0,1250) !!}</p>
+                            <p>{!! substr($setting->description,0,1385) !!}</p>
                         <div class="buttons">
                             <a href="{{url('aboutus')}}" class=" red-btn red-btn-1">अधिक हेर्नुहोस्</a>
                         </div>

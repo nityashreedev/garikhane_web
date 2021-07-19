@@ -335,15 +335,15 @@ input {
 }
 
 .red-btn:hover {
-    background: #3c763d;
+    background: #107312;
     color: #fff;
 }
 
 .red-btn-0:hover,
 .red-btn-5:hover,
 .red-btn-form:hover{
-    background: #fff;
-    color:#0786c1;
+    background: #107312;
+    color:white;
 }
 
 .person-content h3 {
@@ -3345,7 +3345,7 @@ p.about-author-paragraph:hover a{
 }
 
 .leave-reply .red-btn-form:hover{
-    background-color: #060606;
+    background-color: #3c763d;
     color:#fff;
 }
 
@@ -5314,6 +5314,7 @@ ul.dropdown-menu li a {
 }
 
 img.img-member {
+    margin-top:20px;
     height: 200px;
     width: 200px;
 }
@@ -5344,7 +5345,7 @@ img.img-member {
 
 .top-right-btn a
 {
-    margin-top: 10px;
+    margin-top: 2px;
 }
 
 .top-right-icon{
@@ -5353,7 +5354,7 @@ img.img-member {
 }
 
 .top-right-icons{
-   margin: 0 5px;
+   margin: 0 3px;
    font-size: 15px;
 }
 @media (max-width:991px) {

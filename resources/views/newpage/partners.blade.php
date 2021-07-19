@@ -25,10 +25,10 @@
     background-position: 0 5%;
     background-repeat: no-repeat;">
         <div class="shadow-main">
-            <h1> साझेदारहरु </h1>
+            <h1> साझेदार संस्था </h1>
             <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ </a></li>
-                <li><a>साझेदारहरु</a></li>
+                <li><a>साझेदार संस्था</a></li>
             </ul>
         </div>
     </div>

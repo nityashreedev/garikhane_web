@@ -105,10 +105,10 @@
     background-position: 0 5%;
     background-repeat: no-repeat;">
 		<div class="shadow-main">
-			<h1> परियोजना सम्बन्धि बिवरण फारम</h1>
+			<h1> परियोजनाको आवेदन फारम</h1>
 			<ul class="breadcrumb breadcrumb-news">
 				<li><a href="{{url('/')}}">HOME</a></li>
-				<li><a href="index.html">परियोजना सम्बन्धि बिवरण फारम
+				<li><a href="index.html">परियोजनाको आवेदन फारम
 						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li>
 			</ul>
 		</div>
