@@ -109,7 +109,9 @@
 			<ul class="breadcrumb breadcrumb-news">
 				<li><a href="{{url('/')}}">HOME</a></li>
 				<li><a href="index.html">परियोजनाको आवेदन फारम/
-						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li>
+						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li><br>
+				<li><a>ठेगाना: {{ $setting->address }}  </a></li>
+				<li><a>सम्पर्क नम्बर: {{ $setting->phone }}</a></li>
 			</ul>
 		</div>
 	</div>
@@ -130,7 +132,7 @@
 		<div class="container">
 			<div class="row">
 				<form method="POST" action="{{url('karmabhomi/form/submission')}}" accept-charset="UTF-8"
-					class="contact-forms" id="regForm" enctype="multipart/form-data">
+					class="contact-forms" id="garikhaneForm" enctype="multipart/form-data">
 					{{csrf_field()}}
 
 					<div class="tab">
@@ -138,23 +140,28 @@
 						<h3>१. व्यक्तिगत विवरण</h3>
 						<p>
 							<label>(१) नाम *</label>
-							<input type="text" class="form-control required_field" required placeholder="नाम"
-								oninput="this.className = ''" name="name" value="{{old('name')}}">
+							<input type="text" class="form-control required_field" placeholder="नाम"
+								oninput="this.className = 'form-control required_field'" name="name" value="{{old('name')}}">
 
-								@error('name')
-								<div class="alert alert-danger">{{ $message }}</div>
-								@enderror
+							@error('name')
+							<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 						</p>
 						<p>
 							<label>(२) ठेगाना *</label>
 							<label>प्रदेश *</label>
-							<select class="form-control pradesh" name="pradesh" required>
+							<select class="form-control pradesh required_field" name="pradesh">
 								<option value="" selected Disabled>प्रदेश</option>
 								@foreach($pradeshs as $pradesh)
-								<option value="{{$pradesh->id}}" data-id="{{$pradesh->id}}" @if(old('pradesh')) selected
-									@endif>{{$pradesh->name}}</option>
+								<option value="{{$pradesh->id}}" {{ old('pradesh') == $pradesh->id ? 'selected' : '' }}
+									data-id="{{$pradesh->id}}" @if(old('pradesh')) selected @endif>{{$pradesh->name}}
+								</option>
 								@endforeach
 							</select>
+							<div id="error">
+
+							</div>
+
 							@error('pradesh')
 							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
@@ -162,8 +169,8 @@
 						</p>
 						<p>
 							<label>जिल्ला *</label>
-							<select class="form-control" name="district" id="district" required>
-								<option value="" Disabled> जिल्ला</option>
+							<select class="form-control required_field" name="district" id="district" required>
+								<option value="" Disabled selected> जिल्ला</option>
 								@if($districts)
 								@foreach($districts as $district)
 								<option value="{{$district->id}}" data-id="{{$district->id}}" @if(old('district'))
@@ -179,8 +186,9 @@
 
 						<p>
 							<label>पालिका *</label>
-							<select class="form-control" name="vdc" id="vdc" aria-invalid="false" required>
-								<option value="" Disabled> पालिका</option>
+							<select class="form-control required_field" name="vdc" id="vdc" aria-invalid="false"
+								required>
+								<option value="" Disabled selected> पालिका</option>
 								@if($municipality)
 								@foreach($municipality as $m)
 								<option value="{{$m->name}}" @if(old('vdc')) selected @endif> {{$m->name}}</option>
@@ -193,7 +201,7 @@
 						</p>
 						<p>
 							<label>वडा *</label>
-							<select name="ward" required class="form-control " aria-invalid="false">
+							<select name="ward" required class="form-control required_field" aria-invalid="false">
 								<option value="" selected Disabled> वडा</option>
 								@for($i = 1 ;$i < 51 ; $i++) <option value="{{$i}}" @if(old('ward')) selected @endif>
 									{{$i}}</option>
@@ -206,35 +214,44 @@
 						<p>
 							<label>टोल *</label>
 							<input type="text" class="form-control required_field" required placeholder="टोल"
-								oninput="this.className = ''" name="tole" value="{{old('tole')}}">
+								oninput="this.className = 'form-control required_field'" name="tole" value="{{old('tole')}}">
 
-								@error('tole')
-								<div class="alert alert-danger">{{ $message }}</div>
-								@enderror
+							@error('tole')
+							<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 						</p>
 						<p>
 							<label>(३) सम्पर्क </label>
 							<label>मोबाइल नम्बर : *</label>
-							<input type="number" class="form-control required_field" placeholder="सम्पर्क मोबाइल नम्बर"
-								oninput="this.className = ''" value="{{old('number')}}" name="number" required>
+							<input type="number" id="phone" class="form-control required_field"
+								placeholder="सम्पर्क मोबाइल नम्बर" oninput="this.className = 'form-control required_field'"
+								value="{{old('number')}}" onfocusout="validatePhone()" name="number" required>
+							<div class="alert alert-danger error-phone">
+								<p>फोनमा त्रुटी देखियो। १० अंक को नम्बर राख्नुहोस। </p>
+							</div>
 							@error('number')
 							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
 						</p>
 						<p>
 							<label>इमेल: *</label>
-							<input type="email" class="form-control required_field" value="{{old('email')}}"
-								placeholder="इमेल: " oninput="this.className = ''" name="email" required>
+							<input type="email" class="form-control required_field" id="email" value="{{old('email')}}"
+								placeholder="इमेल: " oninput="this.className = 'form-control required_field'" onfocusout="validateEmail()"
+								name="email" required>
 
+							<div class="alert alert-danger error-email">
+								<p>इमेलमा त्रुटी देखियो। </p>
+							</div>
 							@error('email')
-								<div class="alert alert-danger">{{ $message }}</div>
+							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
 						</p>
 						<p>
 							<label>(४) लिङ्ग (एकमा चिन्ह लगाउनुस ) *</label>
+							<div class="gender" id="gender-error"></div>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="gender" id="gridRadios1"
-									value="महिला" @if(old('gender')) checked @endif>
+								<input class="form-check-input required_field" type="radio" name="gender"
+									id="gridRadios1" value="महिला">
 								<label class="form-check-label" for="gridRadios1">
 									महिला
 								</label>
@@ -258,20 +275,21 @@
 							@enderror
 						</p>
 						<p>
-							<label>(५) जन्ममिति लेख्नु होस् (बिक्रम सम्बत) (साल / महिना / गते) *</label>
-							<input type="date" required name="date" id="nepali-datepicker"
-								class="form-control bod-picker required_field" placeholder="जन्ममिति"
-								oninput="this.className = ''" value="{{old('date')}}">
+							<label>(५) जन्ममिति (बिक्रम सम्बत) (साल / महिना / गते) *</label>
+							<input type="text" value="{{old('date')}}" name="date"
+								class="form-control required_field date-picker" placeholder="जन्ममिति"
+								oninput="this.className = 'form-control required_field'" />
+
 
 							@error('date')
-								<div class="alert alert-danger">{{ $message }}</div>
+							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
 						</p>
 						<p>
 							<label>(६) शिक्षा(मिल्दो एकमा चिन्ह लगाउनुस ) *</label>
 							<div class="form-check">
-								<input class="form-check-input" type="radio" name="education" value="१० कक्षासम्म"
-									@if(old('education')) checked @endif>
+								<input class="form-check-input required_field" type="radio" name="education"
+									value="१० कक्षासम्म" @if(old('education')) checked @endif>
 								<label class="form-check-label" for="education2">
 									१० कक्षासम्म
 								</label>
@@ -320,34 +338,34 @@
 							<label>(७)परिवारमा रहेको सदस्य संख्या *</label>
 							<label>कुल *</label>
 							<input type="number" placeholder="परिवारमा रहेको सदस्य संख्या"
-								class="form-control required_field" oninput="this.className = ''" name="family_total"
+								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_total"
 								value="{{old('family_total')}}">
-							
-								@error('family_total')
-									<div class="alert alert-danger">{{ $message }}</div>
-								@enderror
+
+							@error('family_total')
+							<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 
 							<label>महिला *</label>
 							<input type="number" placeholder="परिवारमा रहेको महिला संख्या"
-								class="form-control required_field" oninput="this.className = ''" name="family_female"
+								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_female"
 								value="{{old('family_female')}}">
 
-								@error('family_female')
-									<div class="alert alert-danger">{{ $message }}</div>
-								@enderror
+							@error('family_female')
+							<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 
 							<label>पुरुष *</label>
 							<input type="number" placeholder="परिवारमा रहेको पुरुष संख्या"
-								class="form-control required_field" oninput="this.className = ''" name="family_male"
+								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_male"
 								value="{{old('family_male')}}">
 
-								@error('family_male')
-									<div class="alert alert-danger">{{ $message }}</div>
-								@enderror
+							@error('family_male')
+							<div class="alert alert-danger">{{ $message }}</div>
+							@enderror
 
 							<label>अन्य</label>
 							<input type="number" placeholder="परिवारमा रहेको अन्य संख्या" class="form-control"
-								oninput="this.className = ''" name="family_others" value="{{old('family_others')}}">
+								oninput="this.className = 'form-control required_field'" name="family_others" value="{{old('family_others')}}">
 						</p>
 					</div>
 					<div class="tab">
@@ -378,15 +396,15 @@
 						<p>
 							<label>(२) व्यवसायको नाम *</label>
 							<input placeholder="project ..." class="form-control required_field"
-								oninput="this.className = ''" name="ob3" value="{{old('ob3')}}">
+								oninput="this.className = 'form-control required_field'" name="ob3" value="{{old('ob3')}}">
 							@error('ob3')
-								<div class="alert alert-danger">{{ $message }}</div>
+							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
 						</p>
 						<p>
 							<label>(३)व्यवसायको ठेगाना *</label>
 							<label>प्रदेश *</label>
-							<select class="form-control pradesh" name="business_pradesh" required>
+							<select class="form-control pradesh required_field" name="business_pradesh" required>
 								@if(!$karmabhomi)
 								<option value="" selected Disabled>प्रदेश</option>
 								@endif
@@ -401,7 +419,7 @@
 						</p>
 						<p>
 							<label>जिल्ला *</label>
-							<select class="form-control" name="business_district" id="district" required>
+							<select class="form-control required_field" name="business_district" id="district" required>
 								<option value="" Disabled> जिल्ला</option>
 								@if($districts)
 								@foreach($districts as $district)
@@ -416,7 +434,8 @@
 							@enderror
 							<p>
 								<label>पालिका *</label>
-								<select class="form-control" required name="business_vdc" id="vdc" aria-invalid="false">
+								<select class="form-control required_field" required name="business_vdc" id="vdc"
+									aria-invalid="false">
 									<option value="" Disabled> पालिका</option>
 									@if($municipality)
 									@foreach($municipality as $m)
@@ -431,7 +450,7 @@
 							</p>
 							<p>
 								<label>वडा *</label>
-								<select required name="business_ward" required class="form-control "
+								<select required name="business_ward" required class="form-control required_field"
 									aria-invalid="false">
 									<option value="" selected Disabled> वडा</option>
 									@for($i = 1 ;$i < 51 ; $i++) @if($karmabhomi && $karmabhomi->ward == $i)
@@ -450,37 +469,37 @@
 							<p>
 								<label>टोल *</label>
 								<input class="form-control required_field" required placeholder="टोल"
-									oninput="this.className = ''" name="business_tole" value="{{old('business_tole')}}">
-								
+									oninput="this.className = 'form-control required_field'" name="business_tole" value="{{old('business_tole')}}">
+
 								@error('business_tole')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(४)उदेश्य *</label>
 								<input placeholder="व्यवसायको उदेश्य" class="form-control required_field"
-									oninput="this.className = ''" name="business_aim" value="{{old('business_aim')}}">
+									oninput="this.className = 'form-control required_field'" name="business_aim" value="{{old('business_aim')}}">
 								@error('business_aim')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(५)सुचारु वा विस्तार गर्नु को कारण *</label>
 								<input placeholder="कारण" class="form-control required_field"
-									oninput="this.className = ''" name="business_reason"
+									oninput="this.className = 'form-control required_field'" name="business_reason"
 									value="{{old('business_reason') }}">
 
 								@error('business_reason')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(६) उत्पादन हुने बस्तु वा सेवा *</label>
 								<input placeholder="उत्पादन" class="form-control required_field"
-									oninput="this.className = ''" name="ob4" value="{{old('ob4') }}">
-								
+									oninput="this.className = 'form-control required_field'" name="ob4" value="{{old('ob4') }}">
+
 								@error('ob4')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
@@ -488,8 +507,8 @@
 									(७) तपाइंको व्यवसाय कुन क्षेत्र अन्तर्गत पर्दछ? (मिल्दो एकमा चिन्ह लगाउनुस ) *
 								</label>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="ob5" id="agriculture"
-										value="कृषि" @if(old('ob5')) checked @endif>
+									<input class="form-check-input required_field" type="radio" name="ob5"
+										id="agriculture" value="कृषि" @if(old('ob5')) checked @endif>
 									<label class="form-check-label" for="agriculture">
 										कृषि
 									</label>
@@ -537,14 +556,15 @@
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="ob5" id="business_other_field" value="अन्य"
-										@if(old('ob5')) checked @endif>
+									<input class="form-check-input" type="radio" name="ob5" id="business_other_field"
+										value="अन्य" @if(old('ob5')) checked @endif>
 									<label class="form-check-label" for="tourism">
 										अन्य
 									</label>
 								</div>
-								<input type="text" hidden id="business_field_others"  oninput="this.className = ''" name="business_field_others" placeholder="अन्य भए उल्लेख गर्नुहोस ">
-	
+								<input type="text" hidden id="business_field_others" oninput="this.className = 'form-control required_field'"
+									name="business_field_others" placeholder="अन्य भए उल्लेख गर्नुहोस ">
+
 								@error('ob5')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
@@ -552,7 +572,7 @@
 								@error('business_field_others')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
-								
+
 
 							</p>
 							<p>
@@ -563,17 +583,21 @@
 										<th class="text-center">परिमाण</th>
 										<th class="text-center">उत्पादन मूल्य </th>
 										<th class="text-center">कैफियत</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="yearly_report">
 										<tr>
-											<td><input type="text" class="required_field" value="{{ old('yearly_production[0][product]') }}"
-													name="yearly_production[0][product]"></td>
-											<td><input type="text" class="required_field" value="{{ old('yearly_production[0][qty]') }}"
-													name="yearly_production[0][qty]"></td>
-											<td><input type="text" class="required_field" value="{{ old('yearly_production[0][price]') }}"
-													name="yearly_production[0][price]"></td>
-											<td><input type="text" class="required_field" value="{{ old('yearly_production[0][remarks]') }}"
+											<td><input type="text" class="required_field"
+													value="{{ old('yearly_production[0][product]') }}"
+													name="yearly_production[0][product]" oninput="this.className = 'form-control required_field'"></td>
+											<td><input type="text" class="required_field"
+													value="{{ old('yearly_production[0][qty]') }}"
+													name="yearly_production[0][qty]" oninput="this.className = 'form-control required_field'"></td>
+											<td><input type="text" class="required_field"
+													value="{{ old('yearly_production[0][price]') }}"
+													name="yearly_production[0][price]" oninput="this.className = 'form-control required_field'"></td>
+											<td><input type="text" class=""
+													value="{{ old('yearly_production[0][remarks]') }}"
 													name="yearly_production[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_yearly_report"><i
 														class="fa fa-plus"></i></a></td>
@@ -584,102 +608,103 @@
 
 							<p>
 								<label>(९) व्यवसायको लागि आबश्यक पर्ने सिप/तालिम र सो को उपलब्धता *</label>
-								<input type="text" value="{{old('ob8')}}"
-									class="form-control required_field" oninput="this.className = ''" name="ob8">
-								
+								<input type="text" value="{{old('ob8')}}" class="form-control required_field"
+									oninput="this.className = 'form-control required_field'" name="ob8">
+
 								@error('ob8')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(१०) आवश्यक कच्चापदार्थ र सो को उपलब्धता *</label>
-								<input type="text" class="form-control required_field" oninput="this.className = ''"
+								<input type="text" class="form-control required_field" oninput="this.className = 'form-control required_field'"
 									name="ob7" value="{{old('ob7') }}">
 
 								@error('ob7')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 
 							<p>
 								<label>(११) आवश्यक कर्मचारी / कामदार</label>
 								<input type="text" value="{{old('ob10')}}" class="form-control required_field"
-									oninput="this.className = ''" name="ob10">
-								
+									oninput="this.className = 'form-control required_field'" name="ob10">
+
 								@error('ob10')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>मासिक जम्मा तलब</label>
 								<input type="text" value="{{old('total_salary')}}" class="form-control required_field"
-									oninput="this.className = ''" name="total_salary">
-								 
+									oninput="this.className = 'form-control required_field'" name="total_salary">
+
 								@error('total_salary')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(१२) संचालन हुने क्षमता *</label>
 								<input type="text" value="{{old('ob11')}}" class="form-control required_field"
-									oninput="this.className = ''" name="ob11">
-								
-									@error('ob11')
-										<div class="alert alert-danger">{{ $message }}</div>
-									@enderror
+									oninput="this.className = 'form-control required_field'" name="ob11">
+
+								@error('ob11')
+								<div class="alert alert-danger">{{ $message }}</div>
+								@enderror
 							</p>
 							<p>
 								<label>उत्पादन क्षमता *</label>
 								<input type="text" value="{{old('ob12')}}" class="form-control required_field"
-									oninput="this.className = ''" name="ob12">
-								
+									oninput="this.className = 'form-control required_field'" name="ob12">
+
 								@error('ob12')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 
 							<p>
 								<label>(१३)व्यवसाय संचालनको कुल लागत *</label>
 								<input type="text" value="{{old('ob13')}}" class="form-control required_field"
-									oninput="this.className = ''" name="ob13">
+									oninput="this.className = 'form-control required_field'" name="ob13">
 
-									@error('ob13')
-										<div class="alert alert-danger">{{ $message }}</div>
-									@enderror
+								@error('ob13')
+								<div class="alert alert-danger">{{ $message }}</div>
+								@enderror
 
 							</p>
 							<p>
 								<label> (बैंक ऋण ) रु. *</label>
-								<input type="text" class="form-control col-md-4" oninput="this.className = ''"
-									name="ob20" value="{{old('ob20')}}">
+								<input type="text" class="form-control col-md-4 required_field"
+									oninput="this.className = 'form-control required_field'" name="ob20" value="{{old('ob20')}}">
 
-									@error('ob20')
-										<div class="alert alert-danger">{{ $message }}</div>
-									@enderror
+								@error('ob20')
+								<div class="alert alert-danger">{{ $message }}</div>
+								@enderror
 							</p>
 							<p>
 								<label> (स्वपूंजी ) रु. *</label>
-								<input type="text" value="{{old('ob21')}}" class="form-control"
-									oninput="this.className = ''" name="ob21">
-								
+								<input type="text" value="{{old('ob21')}}" class="form-control required_field"
+									oninput="this.className = 'form-control required_field'" name="ob21">
+
 								@error('ob21')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label> (अपेक्षित ब्याजदर )% *</label>
-								<input type="number" value="{{old('expected_interest')}}" class="form-control"
-									oninput="this.className = ''" name="expected_interest">
-								
+								<input type="number" value="{{old('expected_interest')}}"
+									class="form-control required_field" oninput="this.className = 'form-control required_field'"
+									name="expected_interest">
+
 								@error('expected_interest')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 							<p>
 								<label>(१४)किस्ता र ऋण भुक्तानी प्रक्रिया
 								</label>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="loan_payment_type"
+									<input class="form-check-input required_field" type="radio" name="loan_payment_type"
 										id="agriculture" value="मासिक" @if(old('loan_payment_type')) checked @endif>
 									<label class="form-check-label" for="agriculture">
 										मासिक
@@ -700,20 +725,20 @@
 							<p>
 								<label>(१५) ऋणको सुरक्षणको लागि रहने धितोको विवरण
 								</label>
-								<input type="text" value="{{old('ob22')}}" class="form-control"
-									oninput="this.className = ''" name="ob22">
+								<input type="text" value="{{old('ob22')}}" class="form-control required_field"
+									oninput="this.className = 'form-control required_field'" name="ob22">
 
-									@error('ob22')
-										<div class="alert alert-danger">{{ $message }}</div>
-									@enderror
+								@error('ob22')
+								<div class="alert alert-danger">{{ $message }}</div>
+								@enderror
 							</p>
 
 							<p>
 								<label>(१६)ऋण को बर्गिकरण
 								</label>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="loan_category" id="agriculture"
-										value="कृषि" @if(old('loan_category')) checked @endif>
+									<input class="form-check-input required_field" type="radio" name="loan_category"
+										id="agriculture" value="कृषि" @if(old('loan_category')) checked @endif>
 									<label class="form-check-label" for="agriculture">
 										कृषि
 									</label>
@@ -747,19 +772,20 @@
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="radio" name="loan_category" id="loan_category_others"
-										value="अन्य" @if(old('loan_category')) checked @endif>
+									<input class="form-check-input" type="radio" name="loan_category"
+										id="loan_category_others" value="अन्य" @if(old('loan_category')) checked @endif>
 									<label class="form-check-label" for="agriculture">
 										अन्य
 									</label>
 								</div>
-								<input hidden type="text"  id="loan_category_text_field" name="loan_category_others_text" placeholder="अन्य भए उल्लेख गर्नुहोस ">
+								<input hidden type="text" id="loan_category_text_field" name="loan_category_others_text"
+									placeholder="अन्य भए उल्लेख गर्नुहोस ">
 								@error('loan_category')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 
 								@error('loan_category_others_text')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 
 							</p>
@@ -773,18 +799,17 @@
 										<th class="text-center">लागत</th>
 										<th class="text-center">उपलब्दता</th>
 										<th class="text-center">कैफियत</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="required_machinery">
 										<tr>
-											<td><input type="text" oninput="this.className = ''"
+											<td><input type="text" oninput="this.className = 'form-control required_field'"
 													name="machinery[0][machine_name]"></td>
-											<td><input type="text" oninput="this.className = ''"
+											<td><input type="text" oninput="this.className = 'form-control required_field'"
 													name="machinery[0][total_expense]"></td>
-											<td><input type="text" oninput="this.className = ''"
+											<td><input type="text" oninput="this.className = 'form-control required_field'"
 													name="machinery[0][availability]"></td>
-											<td><input type="text" oninput="this.className = ''"
-													name="machinery[0][remarks]"></td>
+											<td><input type="text" 	name="machinery[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_machinery"><i
 														class="fa fa-plus"></i></a></td>
 										</tr>
@@ -808,17 +833,17 @@
 										<th class="text-center">अनुमानित मूल्य </th>
 										<th class="text-center">विवरण</th>
 										<th class="text-center">कैफियत</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="fixed_capital">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][fixed_property]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][details]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="" 
 													name="fixed_capital[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_fixed_capital"><i
 														class="fa fa-plus"></i></a></td>
@@ -834,18 +859,17 @@
 										<th class="text-center">अनुमानित मूल्य </th>
 										<th class="text-center">विवरण</th>
 										<th class="text-center">कैफियत</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="running_capital">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][running_property]"></td>
-											<td><input type="text" class="required_field"
-													oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][details]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="" 
 													name="running_capital[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_running_capital"><i
 														class="fa fa-plus"></i></a></td>
@@ -861,17 +885,17 @@
 										<th class="text-center">अनुमानित मूल्य </th>
 										<th class="text-center">अनुमानित बार्षिक उत्पादन </th>
 										<th class="text-center">जम्मा खर्च </th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="unit_expense">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][approx_annual_production]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_unit_expense"><i
 														class="fa fa-plus"></i></a></td>
@@ -887,17 +911,17 @@
 										<th class="text-center">अनुमानित मूल्य </th>
 										<th class="text-center">अनुमानित बार्षिक बिक्रि</th>
 										<th class="text-center">जम्मा खर्च</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="unit_income">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][approx_annual_sale]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_unit_income"><i
 														class="fa fa-plus"></i></a></td>
@@ -913,17 +937,17 @@
 										<th class="text-center">अनुमानित मूल्य </th>
 										<th class="text-center">अनुमानित बार्षिक बिक्रि</th>
 										<th class="text-center">जम्मा खर्च</th>
-										<th class="text-center">विकल्पहरु</th>
+										<th class="text-center">थप पंक्ति</th>
 									</thead>
 									<tbody id="annual_operation_cost">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][approx_annual_sale]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = ''"
+											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_annual_operation_cost"><i
 														class="fa fa-plus"></i></a></td>
@@ -934,12 +958,12 @@
 							<p>
 								<label>(२३) उत्पादित बस्तुको बजार *</label>
 								<input type="text" value="{{old('ob16')}}" class="form-control required_field"
-									oninput="this.className = ''" name="ob16">
-								
+									oninput="this.className = 'form-control required_field'" name="ob16">
+
 								@error('ob16')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
-								
+
 							</p>
 
 							<p>
@@ -972,29 +996,31 @@
 									(२५)तपाईंको व्यवसाय संचालनमा अरु कुनै समस्या छ?
 								</label>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="ob24[]" id="agriculture"
-										value="सेल्स तथा मार्केटिंग" @if(old('ob24')) checked @endif>
+									<input class="form-check-input required_field" type="checkbox" name="ob24[]"
+										id="agriculture" value="सेल्स तथा मार्केटिंग"
+										@if(old('ob24[]')=="सेल्स तथा मार्केटिंग" ) @endif>
 									<label class="form-check-label" for="agriculture">
 										सेल्स तथा मार्केटिंग
 									</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" name="ob24[]" id="production"
-										value="प्रविधि" @if(old('ob24')) checked @endif>
+										value="प्रविधि" {{ old('ob24') == "प्रविधि" ? 'checked':'' }}>
 									<label class="form-check-label" for="production">
 										प्रविधि
 									</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" name="ob24[]" id="production"
-										value="संचालन व्यवस्थापन" @if(old('ob24')) checked @endif>
+										value="संचालन व्यवस्थापन"
+										{{ (is_array(old('ob24')) && in_array('संचालन व्यवस्थापन', old('ob24'))) ? ' checked' : '' }}>
 									<label class="form-check-label" for="production">
 										संचालन व्यवस्थापन
 									</label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" name="ob24[]" id="education"
-										value="मानव संसाधन" @if(old('ob24')) checked @endif>
+										value="मानव संसाधन" {{ old('ob24') == "मानव संसाधन" ? 'checked':'' }}>
 									<label class="form-check-label" for="education">
 										मानव संसाधन
 									</label>
@@ -1002,84 +1028,107 @@
 
 								<div class="form-check">
 									<input class="form-check-input" type="checkbox" name="ob24[]" id="education"
-										value="प्रशासन" @if(old('ob24')) checked @endif>
+										value="प्रशासन" {{ old('ob24') == "प्रशासन" ? 'checked':'' }}>
 									<label class="form-check-label" for="education">
 										प्रशासन
 									</label>
 								</div>
 								<div class="form-check">
-									<input class="form-check-input" type="checkbox" name="ob24[]" id="business_problem_others" value="अन्य"
-										@if(old('ob24')) checked @endif>
+									<input class="form-check-input" type="checkbox" name="ob24[]"
+										id="business_problem_others" value="अन्य"
+										{{ old('ob24') == "अन्य" ? 'checked':'' }}>
 									<label class="form-check-label" for="education">अन्य</label>
 								</div>
-								<input hidden type="text" id="ob24_others_text" name="ob24_others_text" placeholder="अन्य भए उल्लेख गर्नुहोस ">
+								<input hidden type="text" id="ob24_others_text" name="ob24_others_text"
+									value="{{ old('ob24_others_text') }}" placeholder="अन्य भए उल्लेख गर्नुहोस ">
 								@error('ob24[]')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 
 								@error('ob24_others_text')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 
 							</p>
 							<p>
 								<label>(२६) तपाईंलाई पायक पर्ने बैंकको नाम के हो ?</label>
 								<input type="text" value="{{old('bank_name') }}" class="form-control required_field"
-									oninput="this.className = ''" name="bank_name">
+									oninput="this.className = 'form-control required_field'" name="bank_name">
 
 								@error('bank_name')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
-								
+
 							</p>
 							<p>
 								<label>उक्त बैंक को पायक पर्ने शाखा</label>
 								<input type="text" value="{{old('bank_branch')}}" class="form-control required_field"
-									oninput="this.className = ''" name="bank_branch">
+									oninput="this.className = 'form-control required_field'" name="bank_branch">
 
 								@error('bank_branch')
-									<div class="alert alert-danger">{{ $message }}</div>
+								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
 							</p>
 
 							<p><label>तपाइंको अमूल्य समय दिएर प्रस्नावाली भरिदिनु भएकोमा धन्यवाद !</label></p>
-							<p><label>नोटः व्यवसाय विस्तारको लागि दर्ता कागज,कर चुक्ता प्रमाणपत्र,अडिट रिपार्टे पेश गर्नु पर्नेछ।</label></p>
-							
+							<p><label>नोटः व्यवसाय विस्तारको लागि दर्ता कागज,कर चुक्ता प्रमाणपत्र,अडिट रिपार्टे पेश
+									गर्नु पर्नेछ।</label></p>
+
 							<div class="form_text">
-								<div class="title"><h3>उद्देश्य</h3></div>
+								<div class="title">
+									<h3>उद्देश्य</h3>
+								</div>
 								<ul>
-									<li>->सम्भावित उद्यमी, नवीन उद्यमी तथा विस्तार/वृद्धिको सम्भावना बोकेका उद्यमीको पहिचान गर्ने ।</li>
-									<li>->पहिचान गरिएको सम्भावित उद्यमी, नवीन उद्यमी तथा उद्यमी,व्यवसायीलाई बैंक तथा वित्तिय संस्था, लगानीकर्ता,सरकार र विकास साझेदारहरूसँग जोड्ने।</label></li>
+									<li>->सम्भावित उद्यमी, नवीन उद्यमी तथा विस्तार/वृद्धिको सम्भावना बोकेका उद्यमीको
+										पहिचान गर्ने ।</li>
+									<li>->पहिचान गरिएको सम्भावित उद्यमी, नवीन उद्यमी तथा उद्यमी,व्यवसायीलाई बैंक तथा
+										वित्तिय संस्था, लगानीकर्ता,सरकार र विकास साझेदारहरूसँग जोड्ने।</label></li>
 									<li>->उद्यम, उद्यमी, लगानी तथा लगानीकर्ताको समन्वय हुने आधार निर्माण गर्ने ।</li>
-									<li>->विदेश/वैदेशिक रोजगारबाट फर्केका युवालाई उद्यमशीलता सुरु गर्न प्रोत्साहन गर्ने ।</li>
-									<li>->बेरोजगार युवालाई रोजगारीको अवसर, ज्ञान तथा सीप एवं श्रोतसँग जोड्न समन्वय गर्ने ।</li>
+									<li>->विदेश/वैदेशिक रोजगारबाट फर्केका युवालाई उद्यमशीलता सुरु गर्न प्रोत्साहन गर्ने
+										।</li>
+									<li>->बेरोजगार युवालाई रोजगारीको अवसर, ज्ञान तथा सीप एवं श्रोतसँग जोड्न समन्वय गर्ने
+										।</li>
 
 								</ul>
 								<p>
 									<strong>
-										यस पृष्ठभूमि र उद्देश्यअनुरूप, हामीले सातै प्रदेशबाट सम्भाव्य उद्यमी, व्यवसायीहरूको खोजी गरिरहेका छौँ ।
-										कृषि र यससँग सम्बन्धित परियोजना, उत्पादनमूलक क्षेत्र, पर्यटन, प्रविधि, शिक्षा, स्वास्थ्य तथा अन्य क्षेत्रका परियोजनाहरूका लागि आवेदन दिन सकिनेछ ।
+										यस पृष्ठभूमि र उद्देश्यअनुरूप, हामीले सातै प्रदेशबाट सम्भाव्य उद्यमी,
+										व्यवसायीहरूको खोजी गरिरहेका छौँ ।
+										कृषि र यससँग सम्बन्धित परियोजना, उत्पादनमूलक क्षेत्र, पर्यटन, प्रविधि, शिक्षा,
+										स्वास्थ्य तथा अन्य क्षेत्रका परियोजनाहरूका लागि आवेदन दिन सकिनेछ ।
 									</strong>
 								</p>
-								<div class="title"><h3>कार्यक्रमहरु छनौट गर्दा निम्न विषयमा ध्यान दिइनेछ</h3></div>
+								<div class="title">
+									<h3>कार्यक्रमहरु छनौट गर्दा निम्न विषयमा ध्यान दिइनेछ</h3>
+								</div>
 								<ul>
-									<li>->एउटा उद्यमीको रूपमा उद्यम, उद्यमशीलताको यात्रालाई नेतृत्व दिन सक्ने, सुदृढ, प्रतिबद्ध व्यक्ति हुनुपर्नेछ |</li>
-									<li>->उद्यम/व्यवसाय– सञ्चालनको अनुभव भएका र यससम्बन्धी सीप तथा ज्ञान भएकालाई प्राथमिकता दिइने छ |</li>
-									<li>->इको सिस्टम (पारिस्थितिकी)– यहाँको समुदायसँग काम गर्ने मूल्य श्रृङखलाका हरेक पक्षसँग सुदृढ सम्बन्ध भएको हुनुपर्नेछ |</li>
-									<li>->अर्थतन्त्रमा योगदान– परियोजना / स्टार्ट–अप्स (सानो व्यवसायको सुरुवात गर्ने) आकर्षक र उच्च वृद्धि / विस्तारको सम्भावना, रोजगारी सिर्जना गर्ने र सरकारले प्राथमिकीकरण गरेको उत्पादनमूलक क्षेत्र हुँदा राम्रो हुन्छ|</li>
+									<li>->एउटा उद्यमीको रूपमा उद्यम, उद्यमशीलताको यात्रालाई नेतृत्व दिन सक्ने, सुदृढ,
+										प्रतिबद्ध व्यक्ति हुनुपर्नेछ |</li>
+									<li>->उद्यम/व्यवसाय– सञ्चालनको अनुभव भएका र यससम्बन्धी सीप तथा ज्ञान भएकालाई
+										प्राथमिकता दिइने छ |</li>
+									<li>->इको सिस्टम (पारिस्थितिकी)– यहाँको समुदायसँग काम गर्ने मूल्य श्रृङखलाका हरेक
+										पक्षसँग सुदृढ सम्बन्ध भएको हुनुपर्नेछ |</li>
+									<li>->अर्थतन्त्रमा योगदान– परियोजना / स्टार्ट–अप्स (सानो व्यवसायको सुरुवात गर्ने)
+										आकर्षक र उच्च वृद्धि / विस्तारको सम्भावना, रोजगारी सिर्जना गर्ने र सरकारले
+										प्राथमिकीकरण गरेको उत्पादनमूलक क्षेत्र हुँदा राम्रो हुन्छ|</li>
 								</ul>
 								<p class="note">
 									<strong>
-									नोट : यो अभियान उद्यमशील बन्न चाहने व्यक्ति वा समुहहरुलाई उद्यमशील बनाउने कार्यमा सहयो गी संस्था मात्र हो ।
-									यसले गरिखाने कार्यक्रम (व्यवसाय)का लागि आवश्यक ऋण उपलब्ध गराउनका निमित्त बैंक तथा वित्तिय संस्थासँग समन्वय
-									गराइदिनुका साथै आवश्यक कानुनी कागजात तयार गरिदिने, तालिम दिने तथा व्यवस्थापन कार्यमा सहयोग गर्दछ ।
+										नोट : यो अभियान उद्यमशील बन्न चाहने व्यक्ति वा समुहहरुलाई उद्यमशील बनाउने
+										कार्यमा सहयो गी संस्था मात्र हो ।
+										यसले गरिखाने कार्यक्रम (व्यवसाय)का लागि आवश्यक ऋण उपलब्ध गराउनका निमित्त बैंक
+										तथा वित्तिय संस्थासँग समन्वय
+										गराइदिनुका साथै आवश्यक कानुनी कागजात तयार गरिदिने, तालिम दिने तथा व्यवस्थापन
+										कार्यमा सहयोग गर्दछ ।
 									</strong>
 								</p>
-								<div class="title"><h3>थप जानकारीको लागि सम्पर्क:</h3></div>
+								<div class="title">
+									<h3>थप जानकारीको लागि सम्पर्क:</h3>
+								</div>
 								<div class="note">
-									<p>टेलिफोन: ०१–५२५०१४१, इमेल : gareekhane@gmail.com</p>
+									<p>टेलिफोन: ०१-४२६४८२३, इमेल : gareekhane@gmail.com</p>
 									<p>नोटः अनलाइन आवेदन फारम भर्न तलको लिंक क्लिक गर्नुहोस् ।</p>
-									<p>https://www.karmabhoomisamaj.com/garikhane-app-form</p>
+									<p>https://www.garikhane.com/garikhane-app-form</p>
 								</div>
 							</div>
 					</div>
@@ -1103,6 +1152,36 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+
+{{-- nepali calendar --}}
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/nepali-date-picker@2.0.1/dist/jquery.nepaliDatePicker.min.js" crossorigin="anonymous">
+</script>
+<link rel="stylesheet" href="https://unpkg.com/nepali-date-picker@2.0.1/dist/nepaliDatePicker.min.css"
+	crossorigin="anonymous" />
+<script>
+	$('.date-picker').nepaliDatePicker({
+	dateFormat: '%y/ %m/ %d',
+	closeOnDateSelect: true
+  });
+
+  $('.error-phone').hide();
+  $('.error-email').hide();
+</script>
+{{-- <script>
+	$('#garikhaneForm').validate({
+		rules:{
+			email:{
+				required:true,
+				email:true
+			},
+		},
+		messages:{
+			email:"email भर्नुहोस्।",
+		}
+	});
+
+</script> --}}
 
 
 <script type="text/javascript">
@@ -1213,26 +1292,103 @@ function nextPrev(n) {
   // if you have reached the end of the form...
   if (currentTab >= x.length) {
     // ... the form gets submitted:
-    document.getElementById("regForm").submit();
+    document.getElementById("garikhaneForm").submit();
     return false;
 }
   // Otherwise, display the correct tab:
   showTab(currentTab);
 }
 
+function validatePhone()
+{
+  var phone = document.getElementById('phone');
+  var phone_pattern = /^\d{10}$/;
+  if(phone.value.match(phone_pattern))
+  {
+	$('.error-phone').hide();
+	valid = true;
+  }else{
+	$('.error-phone').show();
+	valid = false;
+  }
+  return valid;
+  }
+
+ function validateEmail()
+ {
+ var email = document.getElementById('email');
+  var email_pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+  if(email.value.match(email_pattern)){
+	$('.error-email').hide();
+	 valid = true;
+  }else{
+	$('.error-email').show();
+	valid = false;
+  }
+  return valid;
+ }
 function validateForm() {
   // This function deals with validation of the form fields
   var x, y, i, valid = true;
   x = document.getElementsByClassName("tab");
   y = x[currentTab].getElementsByClassName("required_field");
   // A loop that checks every input field in the current tab:
-  for (i = 0; i < y.length; i++) {
+  $('.error').remove();
+  for (i = 0; i < y.length; i++) { 
+	  if(y[i].type == "radio" || y[i].type == "checkbox"){
+		  var name = y[i].getAttribute("name");
+		  console.log(name);
+		  var selection = document.querySelector('input[name="'+name+'"]:checked'); 
+		  if(selection != null) {   
+                console.log(selection.value + name+" is selected");
+				valid = true;	  
+            }   
+            else {  
+				var div = document.createElement('div');
+				div.className += 'error';
+				var text = document.createTextNode('यहाँ त्रुटी देखियो |');
+				div.append(text); 
+				y[i].parentElement.prepend(div);
+				console.log(text);
+				return;	
+            } 
+	  }
+	  
+	var phone = document.getElementById('phone');
+  	var phone_pattern = /^\d{10}$/;
+  	if(phone.value.match(phone_pattern))
+  	{
+		$('.error-phone').hide();
+		valid = true;
+  	}else{
+		$('.error-phone').show();
+		return;
+  	}
+
+	var email = document.getElementById('email');
+	var email_pattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+	if(email.value.match(email_pattern)){
+		$('.error-email').hide();
+		valid = true;
+	}else{
+		$('.error-email').show();
+		return;
+		}
+	
     // If a field is empty...
     if (y[i].value == "") {
       // add an "invalid" class to the field:
       y[i].className += " invalid";
-      // and set the current valid status to false
-      valid = false;
+	  var div = document.createElement('div');
+		div.className += 'error';
+		var text = document.createTextNode('यहाँ त्रुटी देखियो।  !');
+		div.append(text); 
+		y[i].after(div);
+		 // and set the current valid status to false
+		 valid = false;
+		 return;
+		 
+     
   }
 }
   // If the valid status is true, mark the step as finished and valid:
@@ -1303,6 +1459,7 @@ function fixStepIndicator(n) {
                 $('select[name="vdc"]').empty();
             }
 		});
+
 		//Dependent dropdown for business address  
 		$('select[name="business_pradesh"]').on('change', function(){
 			var pradeshId = $(this).val();
@@ -1389,7 +1546,7 @@ function fixStepIndicator(n) {
 		var i=0;
 		$('.add_yearly_report').click(function(){
 			i++;
-			$('#yearly_report').append('<tr><td><input type="text" class="required_field" name="yearly_production['+i+'][product]"></td><td><input type="text" class="required_field" name="yearly_production['+i+'][qty]"></td><td><input type="text" class="required_field" name="yearly_production['+i+'][price]"></td><td><input type="text" class="required_field" name="yearly_production['+i+'][remarks]"></td><td><button class="btn btn-danger btn-sm" id="remove-tr"><i class="fa fa-times"></i></button></td></tr>');
+			$('#yearly_report').append('<tr><td><input type="text" class="required_field" name="yearly_production['+i+'][product]"></td><td><input type="text" class="required_field" name="yearly_production['+i+'][qty]"></td><td><input type="text" class="required_field" name="yearly_production['+i+'][price]"></td><td><input type="text" class="" name="yearly_production['+i+'][remarks]"></td><td><button class="btn btn-danger btn-sm" id="remove-tr"><i class="fa fa-times"></i></button></td></tr>');
 										
 			console.log(i);
 		});
@@ -1403,7 +1560,7 @@ function fixStepIndicator(n) {
 		$('.add_machinery').click(function(){
 			j++;
 			console.log(j);
-			$('#required_machinery').append('<tr><td><input type="text" class="required_field" name="machinery['+j+'][machine_name]"></td><td><input type="number" class="required_field" name="machinery['+j+'][total_expense]"></td><td><input type="text" class="required_field" name="machinery['+j+'][availability]"></td><td><input type="text" class="required_field" name="machinery['+j+'][remarks]"></td><td><a class="btn btn-danger btn-sm remove-machinery"><i class="fa fa-times"></i></a></td></tr>');
+			$('#required_machinery').append('<tr><td><input type="text" class="required_field" name="machinery['+j+'][machine_name]"></td><td><input type="number" class="required_field" name="machinery['+j+'][total_expense]"></td><td><input type="text" class="required_field" name="machinery['+j+'][availability]"></td><td><input type="text" class="" name="machinery['+j+'][remarks]"></td><td><a class="btn btn-danger btn-sm remove-machinery"><i class="fa fa-times"></i></a></td></tr>');
 		});
 
 		$(document).on('click', '.remove-machinery', function(){
@@ -1415,7 +1572,7 @@ function fixStepIndicator(n) {
 		$('.add_fixed_capital').click(function(){
 			k++;
 			console.log(k);
-			$('#fixed_capital').append('<tr><td><input type="text" class="required_field" name="fixed_capital['+k+'][fixed_property]"></td><td><input type="text" class="required_field" name="fixed_capital['+k+'][approx_price]"></td><td><input type="text" class="required_field" name="fixed_capital['+k+'][details]"></td><td><input type="text" class="required_field" name="fixed_capital['+k+'][remarks]"></td><td><a class="btn btn-danger btn-sm"><i class="fa fa-times remove_fixed_capital"></i></a></td></tr>');
+			$('#fixed_capital').append('<tr><td><input type="text" class="required_field" name="fixed_capital['+k+'][fixed_property]"></td><td><input type="text" class="required_field" name="fixed_capital['+k+'][approx_price]"></td><td><input type="text" class="required_field" name="fixed_capital['+k+'][details]"></td><td><input type="text" class="" name="fixed_capital['+k+'][remarks]"></td><td><a class="btn btn-danger btn-sm"><i class="fa fa-times remove_fixed_capital"></i></a></td></tr>');
 		});
 
 		$(document).on('click', '.remove_fixed_capital', function(){

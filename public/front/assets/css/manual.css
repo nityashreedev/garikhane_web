@@ -194,7 +194,7 @@ a {
 }
 
 ul {
-    list-style: none;
+    list-style: none !important;
 }
 
 img {
@@ -337,6 +337,7 @@ input {
 .red-btn:hover {
     background: #107312;
     color: #fff;
+    transform: translateY(-10px);
 }
 
 .red-btn-0:hover,
@@ -344,6 +345,7 @@ input {
 .red-btn-form:hover{
     background: #107312;
     color:white;
+    transform: translateY(-10px);
 }
 
 .person-content h3 {
@@ -406,7 +408,7 @@ iframe{
 }
 
 .logo {
-    position: relative;
+    position: absolute;
 }
 .navbar-right img {
     height: 73px;
@@ -1874,7 +1876,7 @@ a.white:active {
     display: flex;
 }
 .navbar-toggle.collapsed {
-    /* margin-left: auto; */
+    margin-left: 300px;
     border: 1px solid #028c48;
     background: #028c48;
     color: white;
@@ -1884,9 +1886,10 @@ a.white:active {
 }
 
 .navbar-toggle {
-    margin-left: 212px;
+    margin-left: 150px;
     background: #03c364;
     color: white;
+    margin: 10px 0 10px 125px;
 }
 .red-btn-0 {
     padding: 11px 20px !important;
@@ -2024,9 +2027,9 @@ width: 100%;
     }
 
     ul.nav.navbar-nav {
-       max-width: 400px;
-text-align: left;
-margin: 0 auto;
+        width: 400px;
+        text-align: left;
+        margin: 0 auto;
     }
 
     .navbar-default .navbar-nav li {
@@ -2036,7 +2039,7 @@ margin: 0 auto;
 
     /* ========== Contact With Us ======== */
     .main-container-1 p{
-        text-align: center;
+        /* text-align: center; */
     }
 
     .container-text{
@@ -5306,6 +5309,7 @@ ul.dropdown-menu li a {
     height: 50px;
     border-bottom:2px solid #ffffff2e;
     width:auto;
+    padding-left: 10px !important;
 }
 
 .second-dropdown-menu li a
@@ -5335,8 +5339,15 @@ img.img-member {
     .notice_title{
         display: none;
     }
-    .notice_slider{
-        display: none !important;
+   .notice-slider{
+       left: 110px;
+       width: 140px;
+       height: auto !important;
+
+   }
+   .notice-slider>p>a
+    {
+        text-overflow: ellipsis;
     }
    .notice{
        padding: 7px;
@@ -5361,4 +5372,45 @@ img.img-member {
     .top-right-btn{
         display: none;
     }
+}
+
+.error
+{
+    min-height: 30px;
+    color: #e6262d !important;
+    padding: 10px 10px 5px 30px;
+}
+#error
+{
+    color:#e6262d !important;
+}
+
+.footer-social:hover
+{   
+    background-color: white;
+}
+@media screen and (max-width: 768px){
+    .second-dropdown-menu 
+    {
+        display:list-item;
+    }
+}
+.first_dropdown:hover .first_dropdown_menu{display: block;}
+@media screen and (max-width: 370px){
+    .navbar-toggle.collapsed
+    {
+        margin-left: 256px;
+    }
+}
+
+.drop-down-content.year-drop-down {
+    width: 140% !important;
+    padding-right: 10px !important;
+}
+.drop-down-content li {
+    text-align: center !important;
+}
+
+.breadcrumb {
+    margin-bottom: -21px !important;
 }

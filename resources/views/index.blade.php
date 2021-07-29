@@ -25,7 +25,7 @@
                 <div class="carousel-inner" role="listbox">
                     @foreach($banners as $key =>$banner)
                         @if($key == 0)
-                            <div class="item active" style="background-image:url({{ asset('images/banner/'.$banner->image) }});background-repeat: no-repeat; background-size:cover; height: 525px;">
+                            <div class="item active" style="background-image:url({{ asset('images/banner/'.$banner->image) }});background-repeat: no-repeat; background-size:100% 100%; height: 525px;">
                                 <div class="container p0">
                                     <div class="item-content">
                                         <div class="gb-middle ">
@@ -41,7 +41,7 @@
                                 </div>
                             </div><!-- /.item -->
                         @else
-                            <div class="item" style="background-image:url({{ asset('images/banner/'.$banner->image) }});background-repeat: no-repeat; background-size:cover; height: 525px;">
+                            <div class="item" style="background-image:url({{ asset('images/banner/'.$banner->image) }});background-repeat: no-repeat; background-size:100% 100%; height: 525px;">
                                 <div class="container p0">
                                     <div class="item-content">
                                         <div class="gb-middle ">

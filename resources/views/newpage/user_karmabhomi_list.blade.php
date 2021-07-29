@@ -109,7 +109,9 @@
 			<ul class="breadcrumb breadcrumb-news">
 				<li><a href="{{url('/')}}">HOME</a></li>
 				<li><a href="index.html">परियोजनाको आवेदन फारम
-						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li>
+						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li><br>
+				<li><a>ठेगाना: {{ $setting->address }}  </a></li>
+				<li><a>सम्पर्क नम्बर: {{ $setting->phone }}</a></li>
 			</ul>
 		</div>
 	</div>
@@ -133,7 +135,7 @@
                             <td>{{ $karmabhomi->created_at->format('m/d/Y') }}</td>
                         </tr>
                         @endforeach
-                        <a href="{{ route('karmabhomi_form') }}" class="btn btn-success pull-right">अर्को फारम भर्नुहोस्</a>
+                        <a href="{{ route('karmabhomi_form') }}" class="red-btn red-btn-0  pull-right">अर्को फारम भर्नुहोस्</a>
                     </tbody>
                 </table>
 			</div>

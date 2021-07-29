@@ -62,31 +62,31 @@ $(function() {
     });
 
     // ===================== Menu-Bar ======================
-    $(document).on('click','button.navbar-toggle', function(){
-        if($(".slider-info")) {
-            $(".slider-info").each(function () {
-                $(this).toggleClass("displayNone");
-            });
-            $(".slider").toggleClass("shadowButton");
-        }
-        if($(".banner h1")) {
-            $(".banner h1").toggleClass("displayNone");
-            $(".banner ul").toggleClass("displayNone");
-            $(".banner").toggleClass("shadowButton");
-        }
-        if($(".page-404")) {
-            $(".page-404 .menuBar").css("background","rgb(06, 06, 06)");
-        }
-        if($(".page-single")) {
-            $(".page-single .menuBar").css("background","rgb(06, 06, 06)");
-        }
-    });
+    // $(document).on('click','button.navbar-toggle', function(){
+    //     if($(".slider-info")) {
+    //         $(".slider-info").each(function () {
+    //             $(this).toggleClass("displayNone");
+    //         });
+    //         $(".slider").toggleClass("shadowButton");
+    //     }
+    //     if($(".banner h1")) {
+    //         $(".banner h1").toggleClass("displayNone");
+    //         $(".banner ul").toggleClass("displayNone");
+    //         $(".banner").toggleClass("shadowButton");
+    //     }
+    //     if($(".page-404")) {
+    //         $(".page-404 .menuBar").css("background","rgb(06, 06, 06)");
+    //     }
+    //     if($(".page-single")) {
+    //         $(".page-single .menuBar").css("background","rgb(06, 06, 06)");
+    //     }
+    // });
 
-    $(document).on('mouseover',"li.dropdown", function(){
-        $(this).addClass("open");
-    }).on('mouseout',"li.dropdown", function(){
-        $(this).removeClass("open");
-    });
+    // $(document).on('mouseover',"li.dropdown", function(){
+    //     $(this).addClass("open");
+    // }).on('mouseout',"li.dropdown", function(){
+    //     $(this).removeClass("open");
+    // });
 
     // ===================== Counter ======================
     var countbox = $("#counts");
@@ -183,3 +183,87 @@ jQuery("#carousel1").owlCarousel({
     }
   }
 });
+
+$(document).ready(function() {
+    $('.dt-1').click(function() {
+        if ($( ".dt-1" ).hasClass('open')) {
+            $(".dm-1").css("display", "none");
+            $(".dt-1").removeClass("open");    
+        } else {
+          $( ".dt-1" ).addClass( 'open');
+          $(".dm-1").css("display", "list-item");
+        }
+    });
+
+    $('.dt-2').click(function() {
+        if ($( ".dt-2" ).hasClass('open')) {
+            $(".dm-2").css("display", "none");
+            $(".dt-2").removeClass("open");    
+        } else {
+          $( ".dt-2" ).addClass( 'open');
+          $(".dm-2").css("display", "list-item");
+        }
+    });
+
+    $('.dt-3').click(function() {
+        if ($( ".dt-3" ).hasClass('open')) {
+            $(".dm-3").css("display", "none");
+            $(".dt-3").removeClass("open");    
+        } else {
+          $( ".dt-3" ).addClass( 'open');
+          $(".dm-3").css("display", "list-item");
+        }
+    });
+
+    $('.dt-4').click(function() {
+        if ($( ".dt-4" ).hasClass('open')) {
+            $(".dm-4").css("display", "none");
+            $(".dt-4").removeClass("open");    
+        } else {
+          $( ".dt-4" ).addClass( 'open');
+          $(".dm-4").css("display", "list-item");
+        }
+    });
+
+    $('.dt-5').click(function() {
+        if ($( ".dt-5" ).hasClass('open')) {
+            $(".dm-5").css("display", "none");
+            $(".dt-5").removeClass("open");    
+        } else {
+          $( ".dt-5" ).addClass( 'open');
+          $(".dm-5").css("display", "list-item");
+        }
+    });
+
+    $('.dt-6').click(function() {
+        if ($( ".dt-6" ).hasClass('open')) {
+            $(".dm-6").css("display", "none");
+            $(".dt-6").removeClass("open");    
+        } else {
+          $( ".dt-6" ).addClass( 'open');
+          $(".dm-6").css("display", "list-item");
+        }
+    });
+
+
+});
+// $(document).ready(function() {
+//     $('.dt-2').click(function() {
+//             $('.dm-2').slideToggle("fast");
+//     });
+// });
+// $(document).ready(function() {
+//     $('.dt-3').click(function() {
+//             $('.dm-3').slideToggle("fast");
+//     });
+// });
+// $(document).ready(function() {
+//     $('.dt-4').click(function() {
+//             $('.dm-4').slideToggle("fast");
+//     });
+// });
+// $(document).ready(function() {
+//     $('.dt-5').click(function() {
+//             $('.dm-5').slideToggle("fast");
+//     });
+// });

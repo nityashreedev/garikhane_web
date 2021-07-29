@@ -47,7 +47,7 @@
                                                 class="img-fluid img-thumbnails">
                                 
                                 @endif
-                                </div>
+                             </div>
                             
                             <br>
                             <div id="image-holder"> </div>

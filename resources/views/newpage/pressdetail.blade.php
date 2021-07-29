@@ -133,7 +133,7 @@ fieldset {
         <h1> {{$press->title}} </h1>
         <ul class="breadcrumb breadcrumb-news">
             <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a href="{{url('press')}}">प्रेस</a></li>
+            <li><a href="{{url('press')}}">प्रेस विज्ञप्ति</a></li>
             <li><a>{{$press->title}}</a></li>
 
         </ul>
@@ -149,9 +149,11 @@ fieldset {
                                 <div class="person-content">
                                     <div class="inner-about-us-image">
                                         <img src="{{asset('images/news/'.$press->image)}}" alt="">
-                                    </div>
-                                    
-                                    <p>{!! substr($press->text,0,2000000) !!}</p>
+                                    </div> 
+                                    <p>{!! $press->text !!}</p>
+                                    @if(!is_null($press->pdf))
+                                      <a href="{{ '/press_doc/pdf/'.$press->pdf }}" class="red-btn red-btn-0" target="_blank">आधिक हेर्नुहोस</a>
+                                    @endif
     
                             </div>
                           

@@ -9,7 +9,7 @@ use App\Models\MobileUserAuth;
 use App\Libraries\PushNotificationLibrary;
 class NoticeController extends Controller
 {
-    public function index()
+    public function index() 
     {
         $notices = Notice::orderBy('created_at','desc')->get();
         return view('admin.notice.index', compact('notices'));

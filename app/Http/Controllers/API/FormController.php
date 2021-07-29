@@ -27,7 +27,7 @@ class FormController extends Controller
 {
    
     public function karmabhomiform(Request $request)
-    {
+    { 
         \Log::info("Form Data");
         \Log::info($request->all());
         $ob24 =implode(",", $request->ob24);

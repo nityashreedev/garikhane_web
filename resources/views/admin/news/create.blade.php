@@ -96,6 +96,17 @@
                               
                             </select>
                           </div>
+
+                          <div class="form-group mb-3">
+                            <label for="example-email">Pdf file(optional)</label>
+                            <input type="file" name="document" id="fileUpload"
+                                value="{{isset($purpose) ? ($news->pdf ? '$news->pdf': 'required' ): ''}}"    class="form-control"
+                                placeholder="Email">
+                            @error('document')
+                            <div class="alert alert-danger">{{$message}}</div>
+                            @enderror
+
+                        </div>
                             <div class="form-group mb-3">
                                 <input type="checkbox" name="notify_users">
                                 <label for="simpleinput">Notify Users</label>    

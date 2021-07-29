@@ -49,52 +49,52 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($karmabhomi as $karmabhomi)
+        @foreach($karmabhomi as $karma)
         <tr>
-            <td>{{ $karmabhomi->name }}</td>
-            <td>{{ $karmabhomi->getPradesh->name }}</td>
-            <td>{{ $karmabhomi->getDistrict->name }}</td>
-            <td>{{ $karmabhomi->getMunicipality->name }}</td>
-            <td>{{ $karmabhomi->ward }}</td>
-            <td>{{ $karmabhomi->tole }}</td>
-            <td>{{ $karmabhomi->number }}</td>
-            <td>{{ $karmabhomi->email }}</td>
-            <td>{{ $karmabhomi->gender }}</td>
-            <td>{{ $karmabhomi->date }}</td>
-            <td>{{ $karmabhomi->education }}</td>
-            <td>{{ $karmabhomi->family_total }}</td>
-            <td>{{ $karmabhomi->family_female }}</td>
-            <td>{{ $karmabhomi->family_male }}</td>
-            <td>{{ $karmabhomi->family_others }}</td>
-            <td>{{ $karmabhomi->ob2 }}</td>
-            <td>{{ $karmabhomi->ob3 }}</td>
-            <td>{{ $karmabhomi->getBusinessPradesh->name }}</td>
-            <td>{{ $karmabhomi->getBusinessDistrict->name }}</td>
-            <td>{{ $karmabhomi->getBusinessMunicipality->name }}</td>
-            <td>{{ $karmabhomi->business_ward }}</td>
-            <td>{{ $karmabhomi->business_tole }}</td>
-            <td>{{ $karmabhomi->business_aim }}</td>
-            <td>{{ $karmabhomi->business_reason }}</td>
-            <td>{{ $karmabhomi->ob4 }}</td>
-            <td>{{ $karmabhomi->ob5 }}</td>
-            <td>{{ $karmabhomi->ob8 }}</td>
-            <td>{{ $karmabhomi->ob7 }}</td>
-            <td>{{ $karmabhomi->ob10 }}</td>
-            <td>{{ $karmabhomi->total_salary }}</td>
-            <td>{{ $karmabhomi->ob11 }}</td>
-            <td>{{ $karmabhomi->ob12 }}</td>
-            <td>{{ $karmabhomi->ob13 }}</td>
-            <td>{{ $karmabhomi->ob20 }}</td>
-            <td>{{ $karmabhomi->ob21 }}</td>
-            <td>{{ $karmabhomi->expected_interest }}</td>
-            <td>{{ $karmabhomi->loan_payment_type }}</td>
-            <td>{{ $karmabhomi->ob22 }}</td>
-            <td>{{ $karmabhomi->loan_category }}</td>
-            <td>{{ $karmabhomi->ob16 }}</td>
-            <td>{{ $karmabhomi->ob23 }}</td>
-            <td>{{ $karmabhomi->ob24 }}</td>
-            <td>{{ $karmabhomi->bank_name }}</td>
-            <td>{{ $karmabhomi->bank_branch }}</td>
+            <td>{{ $karma->name }}</td>
+            <td>{{ $karma->getPradesh->name }}</td>
+            <td>{{ $karma->getDistrict->name }}</td>
+            <td>{{ $karma->getMunicipality->name }}</td>
+            <td>{{ $karma->ward }}</td>
+            <td>{{ $karma->tole }}</td>
+            <td>{{ $karma->number }}</td>
+            <td>{{ $karma->email }}</td>
+            <td>{{ $karma->gender }}</td>
+            <td>{{ $karma->date }}</td>
+            <td>{{ $karma->education }}</td>
+            <td>{{ $karma->family_total }}</td>
+            <td>{{ $karma->family_female }}</td>
+            <td>{{ $karma->family_male }}</td>
+            <td>{{ $karma->family_others }}</td>
+            <td>{{ $karma->ob2 }}</td>
+            <td>{{ $karma->ob3 }}</td>
+            <td>{{ $karma->getBusinessPradesh->name }}</td>
+            <td>{{ $karma->getBusinessDistrict->name }}</td>
+            <td>{{ $karma->getBusinessMunicipality->name }}</td>
+            <td>{{ $karma->business_ward }}</td>
+            <td>{{ $karma->business_tole }}</td>
+            <td>{{ $karma->business_aim }}</td>
+            <td>{{ $karma->business_reason }}</td>
+            <td>{{ $karma->ob4 }}</td>
+            <td>{{ $karma->ob5 }}</td>
+            <td>{{ $karma->ob8 }}</td>
+            <td>{{ $karma->ob7 }}</td>
+            <td>{{ $karma->ob10 }}</td>
+            <td>{{ $karma->total_salary }}</td>
+            <td>{{ $karma->ob11 }}</td>
+            <td>{{ $karma->ob12 }}</td>
+            <td>{{ $karma->ob13 }}</td>
+            <td>{{ $karma->ob20 }}</td>
+            <td>{{ $karma->ob21 }}</td>
+            <td>{{ $karma->expected_interest }}</td>
+            <td>{{ $karma->loan_payment_type }}</td>
+            <td>{{ $karma->ob22 }}</td>
+            <td>{{ $karma->loan_category }}</td>
+            <td>{{ $karma->ob16 }}</td>
+            <td>{{ $karma->ob23 }}</td>
+            <td>{{ $karma->ob24 }}</td>
+            <td>{{ $karma->bank_name }}</td>
+            <td>{{ $karma->bank_branch }}</td>
             <td> 
                 <table>
                 <tr>
@@ -104,7 +104,7 @@
                     <th><strong>वार्षिक उत्पादन क्षमता (कैफियत)</strong></th>
                 </tr>
                      
-                @foreach($karmabhomi->yearlyProduction as $production)
+                @foreach($karma->yearlyProduction as $production)
                     <tr>      
                         <td>{{ $production->product }}</td> 
                         <td>{{ $production->qty }}</td>
@@ -122,7 +122,7 @@
                         <th><strong>खरिद गरिने मेशिनरी (कैफियत)</strong></th>
                     </tr>
                         
-                    @foreach($karmabhomi->machinery as $machine)
+                    @foreach($karma->machinery as $machine)
                         <tr>        
                             <td>{{ $machine->machine_name }}</td> 
                             <td>{{ $machine->total_expense }}</td>
@@ -140,7 +140,7 @@
                             <th><strong> स्थिर पूंजी/सम्पत्ति (विवरण)</strong></th>
                             <th><strong> स्थिर पूंजी/सम्पत्ति (कैफियत)</strong></th>
                         </tr>      
-                        @foreach($karmabhomi->fixedCapital as $fixed_capital)
+                        @foreach($karma->fixedCapital as $fixed_capital)
                             <tr>          
                                 <td>{{ $fixed_capital->fixed_property }}</td> 
                                 <td>{{ $fixed_capital->approx_price }}</td>
@@ -157,7 +157,7 @@
                             <th><strong> चालु पूंजी/सम्पत्ति (विवरण)</strong></th>
                             <th><strong> चालु पूंजी/सम्पत्ति (कैफियत)</strong></th>
                   
-                        @foreach($karmabhomi->runningCapital as $running_capital)
+                        @foreach($karma->runningCapital as $running_capital)
                             <tr>          
                                 <td>{{ $running_capital->running_property }}</td> 
                                 <td>{{ $running_capital->approx_price }}</td>
@@ -174,7 +174,7 @@
                                 <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित बार्षिक उत्पादन)</strong></th>
                                 <th><strong> प्रति इकाई खर्चको विवरण (जम्मा खर्च)</strong></th>
                             </tr>      
-                            @foreach($karmabhomi->unitExpense as $unit_expense)
+                            @foreach($karma->unitExpense as $unit_expense)
                                 <tr>          
                                     <td>{{ $unit_expense->name }}</td> 
                                     <td>{{ $unit_expense->approx_price }}</td>
@@ -191,7 +191,7 @@
                                     <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित बार्षिक बिक्रि)</strong></th>
                                     <th><strong> प्रति इकाई आम्दानीको विवरण (जम्मा खर्च)</strong></th>
                                 </tr>      
-                                @foreach($karmabhomi->unitIncome as $unit_income)
+                                @foreach($karma->unitIncome as $unit_income)
                                     <tr>          
                                         <td>{{ $unit_income->name }}</td> 
                                         <td>{{ $unit_income->approx_price }}</td>
@@ -208,7 +208,7 @@
                                         <th><strong> बार्षिक संचालन खर्च  (अनुमानित बार्षिक बिक्रि)</strong></th>
                                         <th><strong> बार्षिक संचालन खर्च  (जम्मा खर्च)</strong></th>
                                     </tr>      
-                                    @foreach($karmabhomi->annualOperationCost as $annual_cost)
+                                    @foreach($karma->annualOperationCost as $annual_cost)
                                         <tr>          
                                             <td>{{ $annual_cost->name }}</td> 
                                             <td>{{ $annual_cost->approx_price }}</td>

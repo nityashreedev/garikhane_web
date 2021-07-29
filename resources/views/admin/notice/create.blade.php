@@ -19,6 +19,7 @@
                       
                         <form action="{{isset($purpose) ? url('admin/notice/store/'.$notices->id) :  url('admin/notice/store') }}" id="form" method="POST" enctype="multipart/form-data">
                             {{csrf_field()}}
+                        
 
                             <div class="form-group mb-3">
                                 <label for="simpleinput">Title</label>

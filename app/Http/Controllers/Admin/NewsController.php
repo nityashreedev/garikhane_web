@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\MobileUserAuth;
 use App\Libraries\PushNotificationLibrary;
 use Mail;
+use Illuminate\Support\Facades\File; 
 use App\Mail\NewsCreate;
 
 class NewsController extends Controller
@@ -26,11 +27,14 @@ class NewsController extends Controller
 
     public function store(Request $request)
     {
+        
         $request->validate([
            
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'title' => 'required'
+            'title' => 'required',
+            'document'=>'sometimes|nullable|mimes:pdf,doc,docx'
         ]);
+
         
         $news = new News();
         $news->title = $request->get('title');
@@ -47,6 +51,14 @@ class NewsController extends Controller
                 }
             }
          $news->save();
+         if($file = $request->file('document')){
+             $pdf_name = time().'.'.$file->getClientOriginalExtension();
+             $target_path = public_path('/press_doc/pdf/');
+             if($file->move($target_path, $pdf_name)){
+                 $news->pdf = $pdf_name;
+                 $news->save();
+             }
+         }
 
          if($request->has('notify_users'))
          {
@@ -91,6 +103,16 @@ class NewsController extends Controller
             else
             {
                 $news->image = $news->image;
+            }
+            if($file = $request->file('document')){
+
+                $pdf_name = time().'.'.$file->getClientOriginalExtension();
+                $target_path = public_path('/press_doc/pdf/');
+                if($file->move($target_path, $pdf_name)){
+                    $old_file = 'press_doc/pdf/'.$news->pdf;
+                    File::delete($old_file);
+                    $news->pdf = $pdf_name;
+                }
             }
             $news->update();
             $request->session()->flash('success','News Updated');

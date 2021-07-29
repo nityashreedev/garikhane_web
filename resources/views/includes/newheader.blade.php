@@ -42,7 +42,7 @@
 
 		<!-- End Google Tag Manager -->
 	</head>
-	<style>
+	{{-- <style>
 		.sticky {
 			position: fixed;
 			top: 0;
@@ -82,9 +82,9 @@
 			-ms-transform: translate(0px, 0px);
 			transform: translate3d(0px, 0px, 0px);
 		}
-	</style>
+	</style> --}}
 
-	<body data-rsssl=1>
+	<body >
 
 		<div class="page">
 
@@ -93,29 +93,25 @@
 				<div class="container-fluid">
 					<div class="row notice">
 
-						{{-- <div class="col-lg-8 col-sm-8 col-xs-12 lh">
-							<p>Welcome to our website! Contact No: +977-1-4264823 / Email:
-								<a href="mailto: gareekhane@gmail.com"> gareekhane@gmail.com</a>
-							</p>
-						</div> --}}
-						<div class=" col-lg-2 col-md-2 col-xs-2 notice_title ">
+					
+						<div class="col-md-2 col-xs-6 col-sm-6  notice_title ">
 							<h4>Notices</h4> &nbsp;<span class="fa fa-caret-right fa-2x"></span>
 						</div>
-						<div class="col-md-6 col-lg-6 col-sm-8 col-xs-6 notice_slider ">
+						<div class="col-xs-4 col-sm-4  notice_slider ">
 							@foreach($notices as $n)
 							<p><a href="{{ url('notice/detail/'.$n->id) }}">{{ $n->title }}</a></p>
 							@endforeach
 						</div>
-						<div class=" col-lg-2 col-md-2  col-sm-6 col-xs-4 ph_no lh pl-0 pr-0 ">
+						<div class="col-xs-3 col-sm-3   ph_no lh pl-0 pr-0 ">
 							<img src="/images/whatsapp.png" height="20px" width="20px">
-							<a href='https://wa.me/{{ $setting->whatsapp_number }}'
+							<a href='https://wa.me/977{{ $setting->whatsapp_number }}'
 								target="_blank">{{ $setting->whatsapp_number }}</a>
 						</div>
-						<div class="col-md-2 col-sm-3 col-xs-4 login lh pl-0 pr-0 ">
+						<div class="col-xs-3 col-sm-3  login lh pl-0 pr-0 ">
 							<a href="{{ url('pdf') }}"><span>Downloads</span></a>
 						</div>
 
-						<div class="col-md-2 col-sm-3 col-xs-4 login lh pl-0 pr-0 ">
+						<div class="col-xs-2 col-sm-2  login lh pl-0 pr-0 ">
 
 							@if(Auth::user() && Auth::user()->role != 'admin')
 							<span> <i class="fa fa-user" aria-hidden="true"></i> {{Auth::user()->fname}} </span>
@@ -151,45 +147,48 @@
 											alt="Homepage logo">
 									</a>
 								</div>
-								<a href="#" class="navbar-toggle collapsed" data-toggle="collapse"
+								<div>
+								<a href="#" class="navbar-toggle collapsed m-0" data-toggle="collapse"
 									data-target="#navbar-menu">
 									Menu
 								</a>
 							</div>
+							</div>
 						</div>
-						<div class="col-md-8 col-sm-8">
+						<div class="col-md-8 col-sm-12">
 							<nav class="navbar navbar-default " id="navbar">
 								<div class="navbar-middle">
 									<div id="navbar-menu" class="collapse navbar-collapse ">
 										<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+											<li class="dropdown first_dropdown" id="dt-1">
+												<a href="#"  class="dropdown-toggle dt-1" data-toggle="dropdown" role="button"
 													aria-expanded="false">हाम्रो बारेमा</a>
-												<ul class="dropdown-menu" role="menu">
+												<ul class="dropdown-menu first_dropdown_menu dm-1" role="menu">
 													<li><a href="{{url('aboutus')}}">परिचय</a></li>
 													<li><a href="{{url('boardmember')}}">विशेष समिति</a></li>
-													<li class="second-dropdown"><a href="#">प्रदेश समिति <i
+													<li class="second-dropdown dropdown dt-6"><a href="#" class="dropdown-toggle" data-toggle="second-dropdown-menu" role="menu"
+														aria-expanded="false">प्रदेश समिति <i
 																class="fa fa-caret-right pull-right"></i></a>
-														<ul class="second-dropdown-menu" role="menu">
-															<li class="hovereffect"><a
+														<ul class="second-dropdown-menu dropdown-menu dm-6" role="menu">
+															<li><a
 																	href="{{ url('state1/commite') }}">प्रदेश नं १</a>
 															</li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('state2/commite') }}">प्रदेश नं २</a>
 															</li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('bagmati/commite') }}">बागमती प्रदेश
 																</a></li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('gandaki/commite') }}">गण्डकी प्रदेश
 																</a></li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('lumbini/commite') }}">लुम्बिनी
 																	प्रदेश</a></li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('karnali/commite') }}">कर्णाली
 																	प्रदेश</a></li>
-															<li class="hovereffect"><a
+															<li><a
 																	href="{{ url('sudurpaschim/commite') }}">सुदुरपश्चिम
 																	प्रदेश</a></li>
 														</ul>
@@ -198,10 +197,10 @@
 												</ul>
 											</li>
 
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+											<li class="dropdown first_dropdown">
+												<a href="#" class="dropdown-toggle dt-2" data-toggle="dropdown" role="button"
 													aria-expanded="false">अभियान </a>
-												<ul class="dropdown-menu" role="menu">
+												<ul class="dropdown-menu first_dropdown_menu dm-2" role="menu">
 													@if($Programs)
 													@foreach($Programs as $p)
 													<li><a href="{{url('program/'.$p->id)}}">{{$p->title}} </a></li>
@@ -218,10 +217,10 @@
 											<!--        <li><a href="{{url('job/provider')}}">रोजगार प्रदायक</a></li>-->
 											<!--    </ul>-->
 											<!--</li>-->
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+											<li class="dropdown first_dropdown">
+												<a href="#" class="dropdown-toggle dt-3" data-toggle="dropdown" role="button"
 													aria-expanded="false">परियोजना</a>
-												<ul class="dropdown-menu" role="menu">
+												<ul class="dropdown-menu first_dropdown_menu dm-3" role="menu">
 
 													<!--<li><a href="{{url('garkhanne/project')}}">गरीखाने प्रोजेक्ट</a></l
 											i>-->
@@ -269,23 +268,23 @@
 										<!--</li>-->
 
 
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										<li class="dropdown first_dropdown">
+											<a href="#" class="dropdown-toggle dt-4" data-toggle="dropdown" role="button"
 												aria-expanded="false">मिडिया ग्यालरी </a>
-											<ul class="dropdown-menu" role="menu">
+											<ul class="dropdown-menu first_dropdown_menu dm-4" role="menu">
 
 												<li><a href="{{url('image-category')}}">तस्बिर पुस्तिका</a></li>
 												<li><a href="{{url('notice')}}">सूचना</a></li>
-												<li><a href="{{url('press')}}"> प्रेस बिज्ञप्ति</a></li>
+												<li><a href="{{url('press')}}">प्रेस विज्ञप्ति</a></li>
 												<li><a href="{{url('news')}}">समाचार</a></li>
 
 
 											</ul>
 										</li>
-										<li class="dropdown">
-											<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+										<li class="dropdown first_dropdown">
+											<a href="#" class="dropdown-toggle dt-5" data-toggle="dropdown" role="button"
 												aria-expanded="false">अन्य</a>
-											<ul class="dropdown-menu" role="menu">
+											<ul class="dropdown-menu first_dropdown_menu dm-5" role="menu">
 												<li><a href="{{url('link')}}">महत्वपूर्ण लिंक</a></li>
 												<li><a href="https://www.karmabhoomisamaj.com/" target="_blank">कर्मभूमि
 														समाज</a></li>

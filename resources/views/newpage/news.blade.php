@@ -135,7 +135,6 @@ fieldset {
             <li><a href="{{url('/')}}">बैंकि</a></li>
             <li><a href="{{url('news')}}">समाचार</a></li>
             <li><a>{{$news->title}}</a></li>
-
         </ul>
     </div>
 </div>
@@ -148,7 +147,7 @@ fieldset {
                         <div class="person-card post-single-cont">
                             <div class="person-content">
                                 <div class="inner-about-us-image">
-                                    <img src="{{asset('images/news/'.$news->image)}}" alt="">
+                                    <img class="img-responsive" src="{{asset('images/news/'.$news->image)}}" alt="">
                                 </div>
                                 
                                 <p>{!! substr($news->text,0,20000) !!}</p>

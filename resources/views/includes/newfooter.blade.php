@@ -21,12 +21,12 @@
                         </div>
                         <div class="social-link footer-social-link">
                             <ul>
-                                <li><a href="{{$setting->twitter}}" target="0" class="circle c-1"><i class="fab fa-twitter"></i></a></li>
-                                <li><a href="{{$setting->facebook}}" target="0" class="circle c-2"><i class="icon-facebook "></i></a></li>
-                                <li><a href="{{$setting->instagram}}"  target="0" class="circle c-3"><i class="fab fa-instagram"></i></a></li>
-                                <li><a href="mailto:{{$setting->gmail}}" target="0" class="circle c-4"><i class="far fa-envelope-open"></i></a></li>
-                                <li><a href="{{$setting->youtube}}" target="0" class="circle c-4"><i class="fab fa-youtube"></i></a></li>
-                                <li><a href="{{$setting->linkedin}}" target="0" class="circle c-4"><i class="fab fa-linkedin"></i></a></li>
+                                <li><a href="{{$setting->twitter}}" target="0"><img class="footer-social" src="/images/social_icons/twitter-lg.png"></a></li>
+                                <li><a href="{{$setting->facebook}}" target="0"><img class="footer-social" src="/images/social_icons/fb-lg.png"></a></li>
+                                <li><a href="{{$setting->instagram}}"  target="0"><img class="footer-social" src="/images/social_icons/insta-lg.png"></a></li>
+                                <li><a href="{{$setting->linkedin}}" target="0"> <img class="footer-social" src="/images/social_icons/linkedin-lg.png"></a></li>
+                                <li><a href="mailto:{{$setting->gmail}}" target="0"><img class="footer-social" src="/images/social_icons/gmail-lg.png"></a></li>
+                                <li><a href="{{$setting->youtube}}" target="0"><img class="footer-social" src="/images/social_icons/youtube-lg.png"></a></li>
                             </ul>
                         </div> <!-- footer-social-link -->
                         <div class="user_count">
@@ -76,9 +76,9 @@
                             <input type="hidden" name="hid" value ="home">
                             <div class="g-recaptcha" id="g-recaptcha-responsess" data-sitekey="6Le4YIUbAAAAANokoSViQqpHZwyBQsUE7Bj-Y9Jf"></div>
                             <br><br>
+                            
                             <div class="form-group buttons ">
-                                <input type="submit" class=" btn btn-outline-secondary red-btn red-btn-form" value="Send Message">
-                                
+                                <input type="submit" class="  btn-outline-secondary red-btn red-btn-form" value="Send Message">    
                             </div>
                            <div class="alertmessage" style="
                             text-align: center;
@@ -152,13 +152,13 @@
         });
          });
     </script>
-    <script>
+    {{-- <script>
 $('.navbar-default .navbar-nav li').hover(
        function(){ $(this).addClass('open') },
               function(){ $(this).removeClass('open') }
 
 )  
-</script>
+</script> --}}
 <script>
    $(function() {
   $('#myModalssss').addClass('show');
