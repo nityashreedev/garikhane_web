@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-            @2020 &copy; Karmabhoomi Samaj <a href="{{url('/')}}">Karmabhoomi Samaj</a>
+            {{ now()->year }} &copy;Garikhane Aviyan  <a href="{{url('/')}}"> Garikhane.com</a>
             </div>
            
         </div>

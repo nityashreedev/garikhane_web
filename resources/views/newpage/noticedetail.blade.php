@@ -131,12 +131,6 @@ fieldset {
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1> {{$notice->title}} </h1>
-        <ul class="breadcrumb breadcrumb-news">
-            <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a href="{{url('notice')}}">समाचार</a></li>
-            <li><a>{{$notice->title}}</a></li>
-
-        </ul>
     </div>
 </div>
 <div class="page page-news page-single">

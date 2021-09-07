@@ -91,7 +91,7 @@
                         <div class="wave-line"></div>
                             <p>{!! substr($setting->description,0,1385) !!}</p>
                         <div class="buttons">
-                            <a href="{{url('aboutus')}}" class=" red-btn red-btn-1">अधिक हेर्नुहोस्</a>
+                            <a href="{{url('aboutus')}}" class=" red-btn red-btn-1">थप हेर्नुहोस् </a>
                         </div>
                     </div>
 
@@ -168,6 +168,13 @@
                     </div>
                     @endforeach
                     @endif
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="buttons">
+                            <a href="{{url('events')}}" class="red-btn red-btn-6">थप हेर्नुहोस् </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -287,48 +294,6 @@
         </div>
     </div> -->
 
-   
-
-    <!--=============================== Latest News =====================-->
-    <div class="main-container-1">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div class="text-center">
-                        <h2 class="title-text">परियोजना</h2>
-                        <div class="wave-line wave-center"></div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                @if($garikhanneproject)
-                @foreach($garikhanneproject as $project)
-                <div class="col-lg-6 col-md-6 col-sm-6 mb ">
-                    <div class="person-card">
-                        <div class="person-img oksa">
-                            <a href="{{url('garkhanne/project/details/'.$project->id)}}" class="img-link">
-                                <span><i class="icon-eye" aria-hidden="true"></i></span>
-                                <img src="{{asset('images/garikhanneproject/'.$project->image)}}" alt="">
-                            </a>
-                        </div>
-                        <div class="person-content">
-                            <h3><a href="{{url('garkhanne/project/details/'.$project->id)}}" class="title-white">{{$project->title}}</a></h3>
-                            <p>{!! strip_tags(\Illuminate\Support\Str::words($project->description, 35,'....'))  !!}</p>
-                        </div>
-                    </div>
-                    <div class="buttons">
-                        <a href="{{url('garkhanne/project/details/'.$project->id)}}" class="red-btn red-btn-7">अधिक हेर्नुहोस्
-</a>
-                    </div>
-                </div>
-                @endforeach
-                @endif
-               
-            </div>
-        </div>
-    </div>
     <div class="event">
         <div class="main-container-1">
             <div class="container">
@@ -378,6 +343,13 @@
                     @endforeach
                     @endif
                 </div>
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                        <div class="buttons">
+                            <a href="{{url('notice')}}" class="red-btn red-btn-6">थप हेर्नुहोस् </a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -417,12 +389,10 @@
                
 
             </div>
-
-
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="buttons">
-                        <a href="{{url('testimonial')}}" class="red-btn red-btn-6">अधिक हेर्नुहोस्</a>
+                        <a href="{{url('testimonial')}}" class="red-btn red-btn-6">थप हेर्नुहोस् </a>
                     </div>
                 </div>
             </div>
@@ -460,7 +430,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                     <div class="buttons">
-                        <a href="{{url('partners')}}" class="red-btn red-btn-6">अधिक हेर्नुहोस्</a>
+                        <a href="{{url('partners')}}" class="red-btn red-btn-6">थप हेर्नुहोस् </a>
                     </div>
                 </div>
             </div>

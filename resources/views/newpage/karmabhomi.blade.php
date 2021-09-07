@@ -30,7 +30,8 @@
 	}
 
 	.form-check input {
-		width: 11px;
+		width: 40px;
+		height: 16px;
 	}
 
 	.tab p label {
@@ -107,10 +108,8 @@
 		<div class="shadow-main">
 			<h1> परियोजनाको आवेदन फारम</h1>
 			<ul class="breadcrumb breadcrumb-news">
-				<li><a href="{{url('/')}}">HOME</a></li>
-				<li><a href="index.html">परियोजनाको आवेदन फारम/
-						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li><br>
-				<li><a>ठेगाना: {{ $setting->address }}  </a></li>
+				<li><a>आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li><br>
+				<li><a>ठेगाना: {{ $setting->address }} </a></li>
 				<li><a>सम्पर्क नम्बर: {{ $setting->phone }}</a></li>
 			</ul>
 		</div>
@@ -141,7 +140,8 @@
 						<p>
 							<label>(१) नाम *</label>
 							<input type="text" class="form-control required_field" placeholder="नाम"
-								oninput="this.className = 'form-control required_field'" name="name" value="{{old('name')}}">
+								oninput="this.className = 'form-control required_field'" name="name"
+								value="{{old('name')}}">
 
 							@error('name')
 							<div class="alert alert-danger">{{ $message }}</div>
@@ -214,7 +214,8 @@
 						<p>
 							<label>टोल *</label>
 							<input type="text" class="form-control required_field" required placeholder="टोल"
-								oninput="this.className = 'form-control required_field'" name="tole" value="{{old('tole')}}">
+								oninput="this.className = 'form-control required_field'" name="tole"
+								value="{{old('tole')}}">
 
 							@error('tole')
 							<div class="alert alert-danger">{{ $message }}</div>
@@ -224,8 +225,9 @@
 							<label>(३) सम्पर्क </label>
 							<label>मोबाइल नम्बर : *</label>
 							<input type="number" id="phone" class="form-control required_field"
-								placeholder="सम्पर्क मोबाइल नम्बर" oninput="this.className = 'form-control required_field'"
-								value="{{old('number')}}" onfocusout="validatePhone()" name="number" required>
+								placeholder="सम्पर्क मोबाइल नम्बर"
+								oninput="this.className = 'form-control required_field'" value="{{old('number')}}"
+								onfocusout="validatePhone()" name="number" required>
 							<div class="alert alert-danger error-phone">
 								<p>फोनमा त्रुटी देखियो। १० अंक को नम्बर राख्नुहोस। </p>
 							</div>
@@ -236,8 +238,8 @@
 						<p>
 							<label>इमेल: *</label>
 							<input type="email" class="form-control required_field" id="email" value="{{old('email')}}"
-								placeholder="इमेल: " oninput="this.className = 'form-control required_field'" onfocusout="validateEmail()"
-								name="email" required>
+								placeholder="इमेल: " oninput="this.className = 'form-control required_field'"
+								onfocusout="validateEmail()" name="email" required>
 
 							<div class="alert alert-danger error-email">
 								<p>इमेलमा त्रुटी देखियो। </p>
@@ -338,7 +340,8 @@
 							<label>(७)परिवारमा रहेको सदस्य संख्या *</label>
 							<label>कुल *</label>
 							<input type="number" placeholder="परिवारमा रहेको सदस्य संख्या"
-								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_total"
+								class="form-control required_field"
+								oninput="this.className = 'form-control required_field'" name="family_total"
 								value="{{old('family_total')}}">
 
 							@error('family_total')
@@ -347,7 +350,8 @@
 
 							<label>महिला *</label>
 							<input type="number" placeholder="परिवारमा रहेको महिला संख्या"
-								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_female"
+								class="form-control required_field"
+								oninput="this.className = 'form-control required_field'" name="family_female"
 								value="{{old('family_female')}}">
 
 							@error('family_female')
@@ -356,7 +360,8 @@
 
 							<label>पुरुष *</label>
 							<input type="number" placeholder="परिवारमा रहेको पुरुष संख्या"
-								class="form-control required_field" oninput="this.className = 'form-control required_field'" name="family_male"
+								class="form-control required_field"
+								oninput="this.className = 'form-control required_field'" name="family_male"
 								value="{{old('family_male')}}">
 
 							@error('family_male')
@@ -365,7 +370,8 @@
 
 							<label>अन्य</label>
 							<input type="number" placeholder="परिवारमा रहेको अन्य संख्या" class="form-control"
-								oninput="this.className = 'form-control required_field'" name="family_others" value="{{old('family_others')}}">
+								oninput="this.className = 'form-control'" name="family_others"
+								value="{{old('family_others')}}">
 						</p>
 					</div>
 					<div class="tab">
@@ -396,7 +402,8 @@
 						<p>
 							<label>(२) व्यवसायको नाम *</label>
 							<input placeholder="project ..." class="form-control required_field"
-								oninput="this.className = 'form-control required_field'" name="ob3" value="{{old('ob3')}}">
+								oninput="this.className = 'form-control required_field'" name="ob3"
+								value="{{old('ob3')}}">
 							@error('ob3')
 							<div class="alert alert-danger">{{ $message }}</div>
 							@enderror
@@ -469,7 +476,8 @@
 							<p>
 								<label>टोल *</label>
 								<input class="form-control required_field" required placeholder="टोल"
-									oninput="this.className = 'form-control required_field'" name="business_tole" value="{{old('business_tole')}}">
+									oninput="this.className = 'form-control required_field'" name="business_tole"
+									value="{{old('business_tole')}}">
 
 								@error('business_tole')
 								<div class="alert alert-danger">{{ $message }}</div>
@@ -478,7 +486,8 @@
 							<p>
 								<label>(४)उदेश्य *</label>
 								<input placeholder="व्यवसायको उदेश्य" class="form-control required_field"
-									oninput="this.className = 'form-control required_field'" name="business_aim" value="{{old('business_aim')}}">
+									oninput="this.className = 'form-control required_field'" name="business_aim"
+									value="{{old('business_aim')}}">
 								@error('business_aim')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
@@ -496,7 +505,8 @@
 							<p>
 								<label>(६) उत्पादन हुने बस्तु वा सेवा *</label>
 								<input placeholder="उत्पादन" class="form-control required_field"
-									oninput="this.className = 'form-control required_field'" name="ob4" value="{{old('ob4') }}">
+									oninput="this.className = 'form-control required_field'" name="ob4"
+									value="{{old('ob4') }}">
 
 								@error('ob4')
 								<div class="alert alert-danger">{{ $message }}</div>
@@ -562,7 +572,8 @@
 										अन्य
 									</label>
 								</div>
-								<input type="text" hidden id="business_field_others" oninput="this.className = 'form-control required_field'"
+								<input type="text" hidden id="business_field_others"
+									oninput="this.className = 'form-control required_field'"
 									name="business_field_others" placeholder="अन्य भए उल्लेख गर्नुहोस ">
 
 								@error('ob5')
@@ -572,7 +583,6 @@
 								@error('business_field_others')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
-
 
 							</p>
 							<p>
@@ -589,13 +599,16 @@
 										<tr>
 											<td><input type="text" class="required_field"
 													value="{{ old('yearly_production[0][product]') }}"
-													name="yearly_production[0][product]" oninput="this.className = 'form-control required_field'"></td>
+													name="yearly_production[0][product]"
+													oninput="this.className = 'form-control required_field'"></td>
 											<td><input type="text" class="required_field"
 													value="{{ old('yearly_production[0][qty]') }}"
-													name="yearly_production[0][qty]" oninput="this.className = 'form-control required_field'"></td>
+													name="yearly_production[0][qty]"
+													oninput="this.className = 'form-control required_field'"></td>
 											<td><input type="text" class="required_field"
 													value="{{ old('yearly_production[0][price]') }}"
-													name="yearly_production[0][price]" oninput="this.className = 'form-control required_field'"></td>
+													name="yearly_production[0][price]"
+													oninput="this.className = 'form-control required_field'"></td>
 											<td><input type="text" class=""
 													value="{{ old('yearly_production[0][remarks]') }}"
 													name="yearly_production[0][remarks]"></td>
@@ -617,8 +630,9 @@
 							</p>
 							<p>
 								<label>(१०) आवश्यक कच्चापदार्थ र सो को उपलब्धता *</label>
-								<input type="text" class="form-control required_field" oninput="this.className = 'form-control required_field'"
-									name="ob7" value="{{old('ob7') }}">
+								<input type="text" class="form-control required_field"
+									oninput="this.className = 'form-control required_field'" name="ob7"
+									value="{{old('ob7') }}">
 
 								@error('ob7')
 								<div class="alert alert-danger">{{ $message }}</div>
@@ -675,7 +689,8 @@
 							<p>
 								<label> (बैंक ऋण ) रु. *</label>
 								<input type="text" class="form-control col-md-4 required_field"
-									oninput="this.className = 'form-control required_field'" name="ob20" value="{{old('ob20')}}">
+									oninput="this.className = 'form-control required_field'" name="ob20"
+									value="{{old('ob20')}}">
 
 								@error('ob20')
 								<div class="alert alert-danger">{{ $message }}</div>
@@ -693,8 +708,8 @@
 							<p>
 								<label> (अपेक्षित ब्याजदर )% *</label>
 								<input type="number" value="{{old('expected_interest')}}"
-									class="form-control required_field" oninput="this.className = 'form-control required_field'"
-									name="expected_interest">
+									class="form-control required_field"
+									oninput="this.className = 'form-control required_field'" name="expected_interest">
 
 								@error('expected_interest')
 								<div class="alert alert-danger">{{ $message }}</div>
@@ -779,7 +794,8 @@
 									</label>
 								</div>
 								<input hidden type="text" id="loan_category_text_field" name="loan_category_others_text"
-									placeholder="अन्य भए उल्लेख गर्नुहोस ">
+									placeholder="अन्य भए उल्लेख गर्नुहोस "
+									oninput="this.className = 'form-control required_field'">
 								@error('loan_category')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
@@ -803,13 +819,16 @@
 									</thead>
 									<tbody id="required_machinery">
 										<tr>
-											<td><input type="text" oninput="this.className = 'form-control required_field'"
+											<td><input type="text"
+													oninput="this.className = 'form-control required_field'"
 													name="machinery[0][machine_name]"></td>
-											<td><input type="text" oninput="this.className = 'form-control required_field'"
+											<td><input type="text"
+													oninput="this.className = 'form-control required_field'"
 													name="machinery[0][total_expense]"></td>
-											<td><input type="text" oninput="this.className = 'form-control required_field'"
+											<td><input type="text"
+													oninput="this.className = 'form-control required_field'"
 													name="machinery[0][availability]"></td>
-											<td><input type="text" 	name="machinery[0][remarks]"></td>
+											<td><input type="text" name="machinery[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_machinery"><i
 														class="fa fa-plus"></i></a></td>
 										</tr>
@@ -837,14 +856,16 @@
 									</thead>
 									<tbody id="fixed_capital">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][fixed_property]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="fixed_capital[0][details]"></td>
-											<td><input type="text" class="" 
-													name="fixed_capital[0][remarks]"></td>
+											<td><input type="text" class="" name="fixed_capital[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_fixed_capital"><i
 														class="fa fa-plus"></i></a></td>
 										</tr>
@@ -863,14 +884,16 @@
 									</thead>
 									<tbody id="running_capital">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][running_property]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="running_capital[0][details]"></td>
-											<td><input type="text" class="" 
-													name="running_capital[0][remarks]"></td>
+											<td><input type="text" class="" name="running_capital[0][remarks]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_running_capital"><i
 														class="fa fa-plus"></i></a></td>
 										</tr>
@@ -889,13 +912,17 @@
 									</thead>
 									<tbody id="unit_expense">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][approx_annual_production]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_expense[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_unit_expense"><i
 														class="fa fa-plus"></i></a></td>
@@ -915,13 +942,17 @@
 									</thead>
 									<tbody id="unit_income">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][approx_annual_sale]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="unit_income[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_unit_income"><i
 														class="fa fa-plus"></i></a></td>
@@ -941,13 +972,17 @@
 									</thead>
 									<tbody id="annual_operation_cost">
 										<tr>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][name]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][approx_price]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][approx_annual_sale]"></td>
-											<td><input type="text" class="required_field" oninput="this.className = 'form-control required_field'"
+											<td><input type="text" class="required_field"
+													oninput="this.className = 'form-control required_field'"
 													name="annual_operation_cost[0][total_expense]"></td>
 											<td><a class="btn btn-primary btn-sm pull-right add_annual_operation_cost"><i
 														class="fa fa-plus"></i></a></td>
@@ -968,7 +1003,7 @@
 
 							<p>
 								<label>
-									(२२) के तपाइंले नेपाल सरकारको मापदण्ड अनुरुप वार्षिक अडिट, कर चुक्ताको प्रमाणमात्र र
+									(२४) के तपाइंले नेपाल सरकारको मापदण्ड अनुरुप वार्षिक अडिट, कर चुक्ताको प्रमाणमात्र र
 									कम्पनीको अध्यावधि नियमित रूपमा गर्नु भएको छ? (संचालनमा रहेको व्यवसाय भएमा मात्र
 									भर्नुहोला।)
 								</label>
@@ -1040,7 +1075,9 @@
 									<label class="form-check-label" for="education">अन्य</label>
 								</div>
 								<input hidden type="text" id="ob24_others_text" name="ob24_others_text"
-									value="{{ old('ob24_others_text') }}" placeholder="अन्य भए उल्लेख गर्नुहोस ">
+									value="{{ old('ob24_others_text') }}"
+									oninput="this.className = 'form-control required_field'"
+									placeholder="अन्य भए उल्लेख गर्नुहोस ">
 								@error('ob24[]')
 								<div class="alert alert-danger">{{ $message }}</div>
 								@enderror
@@ -1126,7 +1163,7 @@
 									<h3>थप जानकारीको लागि सम्पर्क:</h3>
 								</div>
 								<div class="note">
-									<p>टेलिफोन: ०१-४२६४८२३, इमेल : gareekhane@gmail.com</p>
+									<p>टेलिफोन: ९८४१९५०४५८, इमेल : gareekhane@gmail.com</p>
 									<p>नोटः अनलाइन आवेदन फारम भर्न तलको लिंक क्लिक गर्नुहोस् ।</p>
 									<p>https://www.garikhane.com/garikhane-app-form</p>
 								</div>

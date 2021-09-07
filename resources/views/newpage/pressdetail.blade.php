@@ -131,12 +131,6 @@ fieldset {
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1> {{$press->title}} </h1>
-        <ul class="breadcrumb breadcrumb-news">
-            <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a href="{{url('press')}}">प्रेस विज्ञप्ति</a></li>
-            <li><a>{{$press->title}}</a></li>
-
-        </ul>
     </div>
 </div>
 <div class="page page-news page-single">
@@ -154,13 +148,10 @@ fieldset {
                                     @if(!is_null($press->pdf))
                                       <a href="{{ '/press_doc/pdf/'.$press->pdf }}" class="red-btn red-btn-0" target="_blank">आधिक हेर्नुहोस</a>
                                     @endif
-    
                             </div>
-                          
                         </div> <!-- /.post-single -->
                     </div> <!-- /.main-post -->
                 </div> <!-- /.col-lg-8 col-md-8 -->
-    
             </div> <!--  /.row -->
         </div> <!--  /.container -->
     </div>

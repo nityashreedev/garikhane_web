@@ -29,6 +29,20 @@ Route::get('popup', 'API\PageController@popup');
 
 Route::get('commite', 'API\PageController@commite');
 Route::get('board', 'API\PageController@board');
+
+// Route for state committe members
+Route::get('state1/commite', 'API\StateCommitteController@state1');
+Route::get('state2/commite', 'API\StateCommitteController@state2');
+Route::get('bagmati/commite', 'API\StateCommitteController@bagmati');
+Route::get('gandaki/commite', 'API\StateCommitteController@gandaki');
+Route::get('lumbini/commite', 'API\StateCommitteController@lumbini');
+Route::get('karnali/commite', 'API\StateCommitteController@karnali');
+Route::get('sudurpaschim/commite', 'API\StateCommitteController@sudurpaschim'); 
+
+
+//Rowute for running projects
+Route::get('running/projects', 'API\RunningProjectController@index');
+
 Route::get('link', 'API\PageController@link');
 Route::get('garikhane/intro', 'API\PageController@garikhaneIntro');
 Route::get('program', 'API\PageController@program'); 

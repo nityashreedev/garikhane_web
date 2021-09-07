@@ -183,13 +183,15 @@ jQuery("#carousel1").owlCarousel({
     }
   }
 });
-
-$(document).ready(function() {
-    $('.dt-1').click(function() {
+ 
+$(document).ready(function() { 
+    if($(window).width() < 768){
+        $('.dt-1').click(function() {
         if ($( ".dt-1" ).hasClass('open')) {
             $(".dm-1").css("display", "none");
             $(".dt-1").removeClass("open");    
         } else {
+            
           $( ".dt-1" ).addClass( 'open');
           $(".dm-1").css("display", "list-item");
         }
@@ -200,8 +202,9 @@ $(document).ready(function() {
             $(".dm-2").css("display", "none");
             $(".dt-2").removeClass("open");    
         } else {
+            
           $( ".dt-2" ).addClass( 'open');
-          $(".dm-2").css("display", "list-item");
+          $(".dm-2").css("display", "block");
         }
     });
 
@@ -211,7 +214,7 @@ $(document).ready(function() {
             $(".dt-3").removeClass("open");    
         } else {
           $( ".dt-3" ).addClass( 'open');
-          $(".dm-3").css("display", "list-item");
+          $(".dm-3").css("display", "block");
         }
     });
 
@@ -221,7 +224,7 @@ $(document).ready(function() {
             $(".dt-4").removeClass("open");    
         } else {
           $( ".dt-4" ).addClass( 'open');
-          $(".dm-4").css("display", "list-item");
+          $(".dm-4").css("display", "block");
         }
     });
 
@@ -231,10 +234,10 @@ $(document).ready(function() {
             $(".dt-5").removeClass("open");    
         } else {
           $( ".dt-5" ).addClass( 'open');
-          $(".dm-5").css("display", "list-item");
+          $(".dm-5").css("display", "block");
         }
     });
-
+    
     $('.dt-6').click(function() {
         if ($( ".dt-6" ).hasClass('open')) {
             $(".dm-6").css("display", "none");
@@ -244,26 +247,6 @@ $(document).ready(function() {
           $(".dm-6").css("display", "list-item");
         }
     });
-
+  }
 
 });
-// $(document).ready(function() {
-//     $('.dt-2').click(function() {
-//             $('.dm-2').slideToggle("fast");
-//     });
-// });
-// $(document).ready(function() {
-//     $('.dt-3').click(function() {
-//             $('.dm-3').slideToggle("fast");
-//     });
-// });
-// $(document).ready(function() {
-//     $('.dt-4').click(function() {
-//             $('.dm-4').slideToggle("fast");
-//     });
-// });
-// $(document).ready(function() {
-//     $('.dt-5').click(function() {
-//             $('.dm-5').slideToggle("fast");
-//     });
-// });

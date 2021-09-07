@@ -16,10 +16,10 @@
     background-repeat: no-repeat;">
         <div class="shadow-main">
     <h1>प्रदेश समिति : {{ $state }}</h1>
-            <ul class="breadcrumb breadcrumb-news">
+            {{-- <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
                 <li><a>प्रदेश समिति</a></li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 

@@ -16,10 +16,10 @@
     background-repeat: no-repeat;">
         <div class="shadow-main">
     <h1>विशेष समिति</h1>
-            <ul class="breadcrumb breadcrumb-news">
+            {{-- <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
                 <li><a>विशेष समिति</a></li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 

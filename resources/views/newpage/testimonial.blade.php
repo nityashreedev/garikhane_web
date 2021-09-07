@@ -39,10 +39,6 @@ blockquote.blockquote.text-center p {
     background-repeat: no-repeat;">
         <div class="shadow-main">
             <h1> सान्दर्भिक भनाईहरु</h1>
-            <ul class="breadcrumb breadcrumb-news">
-                <li><a href="{{url('/')}}">Home</a></li>
-                <li><a>सान्दर्भिक भनाईहरु</a></li>
-            </ul>
         </div>
     </div>
 

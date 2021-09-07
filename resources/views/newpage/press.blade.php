@@ -23,10 +23,6 @@
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1> प्रेस विज्ञप्ति</h1>
-        <ul class="breadcrumb breadcrumb-news">
-            <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a> प्रेस विज्ञप्ति</a></li>
-        </ul>
     </div>
 </div>
 
@@ -44,7 +40,7 @@
                 <div class="post photo-post">
                     <div class="person-card">
                         <div class="person-img press">
-                            <a href="{{asset('images/news/'.$n->image)}}" class="img-link" data-lightbox="image-1" data-title="{{$n->title}}">
+                            <a href="{{ isset($n->pdf)? url('/press_doc/pdf/'.$n->pdf): asset('images/news/'.$n->image) }}" class="img-link" @if(is_null($n->pdf)) data-lightbox="image-1" @endif target="_blank" data-title="{{$n->title}}">
                                 <img src="{{asset('images/news/'.$n->image)}}" alt="boy">
                             </a>
                         </div>

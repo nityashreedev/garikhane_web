@@ -190,7 +190,7 @@ class FormController extends Controller
     
     public function karmabhomiform()
     {
-        $karmabhomis = Karmabhomi::where('user_id', Auth::id())->get(); 
+        $karmabhomis = Karmabhomi::where('user_id', Auth::id())->latest()->get(); 
         
         if(count($karmabhomis))
             {
@@ -490,8 +490,7 @@ class FormController extends Controller
            PushNotificationLibrary::SpecificUserNotification($users, 'Garikhanne', ' Thank You for submitting the form', 1, 'main', 'default', 'Form Submission', $eform->id); 
            
         }    
-        $request->session()->flash('success','तपाइको बिवरण हामीले प्राप्त गर्यौ धन्यवाद। ');
-        return redirect('garikhane-app-form');
+        return redirect('garikhane-app-form')->with('success', 'धन्यवाद, तपाइको बिवरण हामीले प्राप्त गर्यौ।');
 
     }
     

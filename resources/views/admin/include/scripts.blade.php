@@ -65,10 +65,12 @@
 <!-- Gallery Init-->
 <script src="{{asset('panel/assets/js/pages/gallery.init.js')}}"></script>
 
-        <!-- Init js-->
-        <script src="{{asset('panel/assets/js/pages/form-fileuploads.init.js')}}"></script>
+<!-- Init js-->
+<script src="{{asset('panel/assets/js/pages/form-fileuploads.init.js')}}"></script>
+
+
 <script>
-$(".select2").select2();
+    $(".select2").select2();
 
 
 
@@ -78,73 +80,59 @@ Dropzone.options.myAwesomeDropzone = {
     dictRemoveFile: "<i class='fe-x-square'></i>"
     
 };
-</script>
-{{-- <script type="text/javascript">
-    $(document).ready( function () {
-        $('#myTable').DataTable();
-    } );
-</script> --}}
-              
 
-<script>
-   
+
 $(document).ready(function() {
-    $('.input-images-1').imageUploader();
+$('.input-images-1').imageUploader();
 
-    $("#fileUpload").on('change', function () {
+$("#fileUpload").on('change', function () {
 
 if (typeof (FileReader) != "undefined") {
 
-    var image_holder = $("#image-holder");
-    image_holder.empty();
+var image_holder = $("#image-holder");
+image_holder.empty();
 
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $('div#thumb-output > img').remove();
-        $("<img />", {
-            "src": e.target.result,
-            "class": "thumb-image",
-            "style":"width: 400px;"
-        }).appendTo(image_holder);
+var reader = new FileReader();
+reader.onload = function (e) {
+$('div#thumb-output > img').remove();
+$("<img />", {
+"src": e.target.result,
+"class": "thumb-image",
+"style":"width: 400px;"
+}).appendTo(image_holder);
 
 
-    }
-    image_holder.show();
-    reader.readAsDataURL($(this)[0].files[0]);
+}
+image_holder.show();
+reader.readAsDataURL($(this)[0].files[0]);
 } else {
-    alert("This browser does not support FileReader.");
+alert("This browser does not support FileReader.");
 }
 });
 $("#bgfileUpload").on('change', function () {
 
 if (typeof (FileReader) != "undefined") {
 
-    var bgimage_holder = $("#bgimage-holder");
-    bgimage_holder.empty();
+var bgimage_holder = $("#bgimage-holder");
+bgimage_holder.empty();
 
-    var reader = new FileReader();
-    reader.onload = function (e) {
-        $('div#thumb-output > img').remove();
-        $("<img />", {
-            "src": e.target.result,
-            "class": "thumb-image",
-            "style":"width: 400px;"
-        }).appendTo(bgimage_holder);
+var reader = new FileReader();
+reader.onload = function (e) {
+$('div#thumb-output > img').remove();
+$("<img />", {
+"src": e.target.result,
+"class": "thumb-image",
+"style":"width: 400px;"
+}).appendTo(bgimage_holder);
 
 
-    }
-    bgimage_holder.show();
-    reader.readAsDataURL($(this)[0].files[0]);
+}
+bgimage_holder.show();
+reader.readAsDataURL($(this)[0].files[0]);
 } else {
-    alert("This browser does not support FileReader.");
+alert("This browser does not support FileReader.");
 }
 });
 });
-
-</script>
-<script type="text/javascript">
-
-
-
 
 </script>

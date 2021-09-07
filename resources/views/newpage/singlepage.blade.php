@@ -133,7 +133,7 @@ fieldset {
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1>{{($title  == "Event Summary") ? ' कार्यक्रम' : 'Job Listing'}}</h1>
-        <ul class="breadcrumb breadcrumb-news">
+        {{-- <ul class="breadcrumb breadcrumb-news">
             <li><a href="{{url('/')}}">HOME</a></li>
             @if($title  == "Event Summary")
             <li><a href="{{url('events')}}"> कार्यक्रम</a></li>
@@ -142,7 +142,7 @@ fieldset {
             @endif
             <li><a>{{$single->title}}</a></li>
 
-        </ul>
+        </ul> --}}
     </div>
 </div>
 <div class="page page-news page-single">
@@ -239,7 +239,7 @@ fieldset {
       <textarea placeholder="Type your message here...." tabindex="5" id="enquiry" name="enquiry" required></textarea>
     </fieldset>
     <fieldset>
-     <div class="g-recaptcha" id="g-recaptcha-response" data-sitekey="6LeI1n0aAAAAAG3uJp_O_183pdKcnoUsrxNNj1p5"></div>
+     <div class="g-recaptcha" id="g-recaptcha-response" data-sitekey="6Le4YIUbAAAAANokoSViQqpHZwyBQsUE7Bj-Y9Jf"></div>
      </fieldset>
                             <br><br>
     <fieldset>

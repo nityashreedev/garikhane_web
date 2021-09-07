@@ -30,6 +30,9 @@ Route::get('lumbini/commite', 'Frontend\StateCommitteController@lumbini');
 Route::get('karnali/commite', 'Frontend\StateCommitteController@karnali');
 Route::get('sudurpaschim/commite', 'Frontend\StateCommitteController@sudurpaschim'); 
 
+//routes for running project
+Route::get('running-projects', 'Frontend\RunningProjectController@index');
+
 
 
 Route::get('link','Frontend\PageController@link');
@@ -368,5 +371,13 @@ Route::get('location/create','LocationController@create');
     Route::post('setting/store' ,'SettingController@store');
     Route::post('setting/store/{id}','SettingController@update');
 
+    Route::get('running/project', 'RunningProjectController@index')->name('filter.running.projects');
+    Route::get('running/project/create', 'RunningProjectController@create')->name('create.runningProject');
+    Route::get('running/project/{id}/edit','RunningProjectController@edit')->name('edit.runningProject');
+    Route::post('running/project/store' ,'RunningProjectController@store')->name('store.runningProject');
+    Route::post('running/project/{id}/update','RunningProjectController@update')->name('update.runningProject');
+    Route::get('running/project/{id}/delete', 'RunningProjectController@destroy');
+    Route::get('running/project/download', 'RunningProjectController@runningProjectCsv');
+    
 
 });

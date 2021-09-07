@@ -101,7 +101,7 @@ class PageController extends Controller
     
     public function faq()
     {
-        $faqs = FAQ::orderBy('created_at','desc')->get();
+        $faqs = FAQ::orderBy('created_at','asc')->get();
         return view('newpage.faq')->with(compact('faqs'));
     }
     
@@ -122,7 +122,7 @@ class PageController extends Controller
     
      public function news()
     {
-        $news = News::orderBy('publish_date','desc')->where(['type'=>'news', 'status'=>1])->paginate(6);
+        $news = News::orderBy('publish_date','desc')->where(['type'=>'news', 'status'=>1])->paginate(8);
         return view('newpage.newslist')->with(compact('news'));
         
     }
@@ -245,7 +245,7 @@ class PageController extends Controller
             break;
         }
         
-        return view('newpage.projectideabank')->with(compact('projectideabank','header'));
+        return view('projectidea.index')->with(compact('projectideabank','header'));
     }
     
     public function projectbankdetail($id)
@@ -583,9 +583,8 @@ class PageController extends Controller
         $contact->enquiry = $request->enquiry;
         $contact->address = $request->address;
         $contact->save();
-        toastr()->success('Thank You!! Message sent Successgully');
         // Mail::to('info@karmabhoomisamaj.com')->send(new ContactMail($contact));
-            return redirect('contactus');
+            return redirect('contactus')->with('success', 'धन्यवाद,  संदेश पठाउनुभएकोमा।');
     }
 
     // public function reply()

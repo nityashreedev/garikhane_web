@@ -127,11 +127,11 @@ fieldset {
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1> {{$program->title}} </h1>
-        <ul class="breadcrumb breadcrumb-news">
+        {{-- <ul class="breadcrumb breadcrumb-news">
             <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
             <li><a>{{$program->title}}</a></li>
 
-        </ul>
+        </ul> --}}
     </div>
 </div>
 <div class="page page-news page-single">

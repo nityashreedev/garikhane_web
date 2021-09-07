@@ -9,8 +9,8 @@
         <hr style="margin-top: 15px; margin-bottom: 15px;">
 
         <span style="font-size: 26px; font-weight: bold;">
-            Karmabhoomi Form Submission
-</span>
+            गरिखाने फारम विवरण
+        </span>
         <hr style="margin-top: 15px; margin-bottom: 15px;">
         <span style="font-size: 12px; font-weight: bold;">
         Submission Date:  {{$userform->created_at->format('Y-m-d')}}

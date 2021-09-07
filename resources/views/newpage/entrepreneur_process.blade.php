@@ -9,11 +9,6 @@
     background-repeat: no-repeat;">
         <div class="shadow-main">
             <h1> {{ $process->title }}  </h1>
-            <ul class="breadcrumb breadcrumb-news">
-                <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                <li><a>उद्यमशीलताको प्रक्रिया 
- </a></li>
-            </ul>
         </div>
     </div>
 

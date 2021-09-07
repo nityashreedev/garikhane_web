@@ -227,7 +227,6 @@ class PageController extends Controller
                 ];
                }
           
-
             $response = [
                 'data' => $commites,
                 'status' => 200,

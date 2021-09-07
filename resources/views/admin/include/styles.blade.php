@@ -21,3 +21,6 @@
 
 <link type="text/css" rel="stylesheet" href="{{asset('panel/assets/css/image-uploader.min.css')}}">
 <link type="text/css" rel="stylesheet" href="{{asset('panel/assets/css/demo.css')}}">
+{{-- nepali calendar --}}
+<link rel="stylesheet" href="https://unpkg.com/nepali-date-picker@2.0.1/dist/nepaliDatePicker.min.css"
+    crossorigin="anonymous" />

@@ -8,11 +8,10 @@
     background-repeat: no-repeat;">
         <div class="shadow-main">
             <h1> गरिखाने अभियान  </h1>
-            <ul class="breadcrumb breadcrumb-news">
+            {{-- <ul class="breadcrumb breadcrumb-news">
                 <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                <li><a>गरिखाने अभियान 
- </a></li>
-            </ul>
+                <li><a>गरिखाने अभियान</a></li>
+            </ul> --}}
         </div>
     </div>
 

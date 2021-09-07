@@ -2,26 +2,26 @@
     <thead>
         <tr>
             <th><strong>नाम</strong></th>
-            <th><strong>प्रदेश</strong></th>  
+            <th><strong>प्रदेश</strong></th>
             <th><strong>जिल्ला</strong></th>
             <th><strong>पालिका</strong></th>
             <th><strong>वडा</strong></th>
-            <th><strong>टोल</strong></th>  
+            <th><strong>टोल</strong></th>
             <th><strong>सम्पर्क मोबाइल नम्बर</strong></th>
-            <th><strong>इमेल</strong></th>                    
-            <th><strong>लिङ्ग</strong></th>                    
-            <th><strong>जन्ममिति</strong></th>                    
-            <th><strong>शिक्षा</strong></th>                    
+            <th><strong>इमेल</strong></th>
+            <th><strong>लिङ्ग</strong></th>
+            <th><strong>जन्ममिति</strong></th>
+            <th><strong>शिक्षा</strong></th>
             <th><strong>परिवारमा कुल सदस्य संख्या</strong></th>
-            <th><strong>परिवारमा कुल महिला संख्या</strong></th>                    
-            <th><strong>परिवारमा कुल पुरुष संख्या</strong></th>                    
+            <th><strong>परिवारमा कुल महिला संख्या</strong></th>
+            <th><strong>परिवारमा कुल पुरुष संख्या</strong></th>
             <th><strong>परिवारमा कुल अन्य संख्या</strong></th>
-            <th><strong>परियोजनाको किसिम</strong></th>                    
+            <th><strong>परियोजनाको किसिम</strong></th>
             <th><strong>परियोजनाको नाम</strong></th>
-            <th><strong>परियोजनाको ठेगाना (प्रदेश)</strong></th> 
-            <th><strong>परियोजनाको ठेगाना (जिल्ला)</strong></th>                    
-            <th><strong>परियोजनाको ठेगाना (पालिका)</strong></th>                    
-            <th><strong>परियोजनाको ठेगाना (वडा)</strong></th>                      
+            <th><strong>परियोजनाको ठेगाना (प्रदेश)</strong></th>
+            <th><strong>परियोजनाको ठेगाना (जिल्ला)</strong></th>
+            <th><strong>परियोजनाको ठेगाना (पालिका)</strong></th>
+            <th><strong>परियोजनाको ठेगाना (वडा)</strong></th>
             <th><strong>परियोजनाको ठेगाना (टोल)</strong></th>
             <th><strong>परियोजनाको उदेश्य</strong></th>
             <th><strong>सुचारु वा विस्तार गर्नु को कारण</strong></th>
@@ -42,10 +42,11 @@
             <th><strong>ऋण को बर्गिकरण</strong></th>
             <th><strong>उत्पादित बस्तुको बजार</strong></th>
             <th><strong>के तपाइंले नेपाल सरकारको मापदण्ड अनुरुप वार्षिक अडिट,
-            कर चुक्ताको प्रमाणमात्र र कम्पनीको अध्यावधि नियमित रूपमा गर्नु भएको छ?</strong></th>
+                    कर चुक्ताको प्रमाणमात्र र कम्पनीको अध्यावधि नियमित रूपमा गर्नु भएको छ?</strong></th>
             <th><strong>तपाईंको व्यवसाय संचालनमा अरु कुनै समस्या छ?</strong></th>
             <th><strong>तपाईंलाई पायक पर्ने बैंकको नाम</strong></th>
             <th><strong>पायक पर्ने बैंकको शाखा</strong></th>
+            <th><strong>फारम भरेको मिति</strong></th>
         </tr>
     </thead>
     <tbody>
@@ -95,23 +96,24 @@
             <td>{{ $karma->ob24 }}</td>
             <td>{{ $karma->bank_name }}</td>
             <td>{{ $karma->bank_branch }}</td>
-            <td> 
+            <td>{{ $karma->created_at->format('M, d, Y H:i') }}</td>
+            <td>
                 <table>
-                <tr>
-                    <th><strong>वार्षिक उत्पादन क्षमता (उत्त्पादित बस्तु)</strong></th>
-                    <th><strong>वार्षिक उत्पादन क्षमता (परिमाण)</strong></th>
-                    <th><strong>वार्षिक उत्पादन क्षमता (उत्पादन मूल्य)</strong></th>
-                    <th><strong>वार्षिक उत्पादन क्षमता (कैफियत)</strong></th>
-                </tr>
-                     
-                @foreach($karma->yearlyProduction as $production)
-                    <tr>      
-                        <td>{{ $production->product }}</td> 
+                    <tr>
+                        <th><strong>वार्षिक उत्पादन क्षमता (उत्त्पादित बस्तु)</strong></th>
+                        <th><strong>वार्षिक उत्पादन क्षमता (परिमाण)</strong></th>
+                        <th><strong>वार्षिक उत्पादन क्षमता (उत्पादन मूल्य)</strong></th>
+                        <th><strong>वार्षिक उत्पादन क्षमता (कैफियत)</strong></th>
+                    </tr>
+
+                    @foreach($karma->yearlyProduction as $production)
+                    <tr>
+                        <td>{{ $production->product }}</td>
                         <td>{{ $production->qty }}</td>
                         <td>{{ $production->price }}</td>
                         <td>{{ $production->remarks }}</td>
                     </tr>
-                @endforeach
+                    @endforeach
                 </table>
 
                 <table>
@@ -121,121 +123,121 @@
                         <th><strong>खरिद गरिने मेशिनरी (उपलब्दता)</strong></th>
                         <th><strong>खरिद गरिने मेशिनरी (कैफियत)</strong></th>
                     </tr>
-                        
+
                     @foreach($karma->machinery as $machine)
-                        <tr>        
-                            <td>{{ $machine->machine_name }}</td> 
-                            <td>{{ $machine->total_expense }}</td>
-                            <td>{{ $machine->availability }}</td>
-                            <td>{{ $machine->remarks }}</td>
-                        </tr>
-                        
-                   @endforeach
-                    </table>
+                    <tr>
+                        <td>{{ $machine->machine_name }}</td>
+                        <td>{{ $machine->total_expense }}</td>
+                        <td>{{ $machine->availability }}</td>
+                        <td>{{ $machine->remarks }}</td>
+                    </tr>
 
-                    <table>
-                        <tr>
-                            <th><strong>स्थिर पूंजी/सम्पत्ति (स्थिर सम्पत्ति)</strong></th>
-                            <th><strong> स्थिर पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
-                            <th><strong> स्थिर पूंजी/सम्पत्ति (विवरण)</strong></th>
-                            <th><strong> स्थिर पूंजी/सम्पत्ति (कैफियत)</strong></th>
-                        </tr>      
-                        @foreach($karma->fixedCapital as $fixed_capital)
-                            <tr>          
-                                <td>{{ $fixed_capital->fixed_property }}</td> 
-                                <td>{{ $fixed_capital->approx_price }}</td>
-                                <td>{{ $fixed_capital->details }}</td>
-                                <td>{{ $fixed_capital->remarks }}</td> 
-                            </tr>
-                       @endforeach
-                        </table>
+                    @endforeach
+                </table>
 
-                        <table>
-            
-                            <th><strong>चालु पूंजी/सम्पत्ति (चालु सम्पत्ति)</strong></th>
-                            <th><strong> चालु पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
-                            <th><strong> चालु पूंजी/सम्पत्ति (विवरण)</strong></th>
-                            <th><strong> चालु पूंजी/सम्पत्ति (कैफियत)</strong></th>
-                  
-                        @foreach($karma->runningCapital as $running_capital)
-                            <tr>          
-                                <td>{{ $running_capital->running_property }}</td> 
-                                <td>{{ $running_capital->approx_price }}</td>
-                                <td>{{ $running_capital->details }}</td>
-                                <td>{{ $running_capital->remarks }}</td> 
-                            </tr>
-                       @endforeach
-                        </table>
+                <table>
+                    <tr>
+                        <th><strong>स्थिर पूंजी/सम्पत्ति (स्थिर सम्पत्ति)</strong></th>
+                        <th><strong> स्थिर पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
+                        <th><strong> स्थिर पूंजी/सम्पत्ति (विवरण)</strong></th>
+                        <th><strong> स्थिर पूंजी/सम्पत्ति (कैफियत)</strong></th>
+                    </tr>
+                    @foreach($karma->fixedCapital as $fixed_capital)
+                    <tr>
+                        <td>{{ $fixed_capital->fixed_property }}</td>
+                        <td>{{ $fixed_capital->approx_price }}</td>
+                        <td>{{ $fixed_capital->details }}</td>
+                        <td>{{ $fixed_capital->remarks }}</td>
+                    </tr>
+                    @endforeach
+                </table>
 
-                        <table>
-                            <tr>
-                                <th><strong>प्रति इकाई खर्चको विवरण (नाम)</strong></th>
-                                <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित मूल्य)</strong></th>
-                                <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित बार्षिक उत्पादन)</strong></th>
-                                <th><strong> प्रति इकाई खर्चको विवरण (जम्मा खर्च)</strong></th>
-                            </tr>      
-                            @foreach($karma->unitExpense as $unit_expense)
-                                <tr>          
-                                    <td>{{ $unit_expense->name }}</td> 
-                                    <td>{{ $unit_expense->approx_price }}</td>
-                                    <td>{{ $unit_expense->approx_annual_production }}</td>
-                                    <td>{{ $unit_expense->total_expense }}</td> 
-                                </tr>
-                           @endforeach
-                            </table>
+                <table>
 
-                            <table>
-                                <tr>
-                                    <th><strong>प्रति इकाई आम्दानीको विवरण (नाम)</strong></th>
-                                    <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित मूल्य)</strong></th>
-                                    <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित बार्षिक बिक्रि)</strong></th>
-                                    <th><strong> प्रति इकाई आम्दानीको विवरण (जम्मा खर्च)</strong></th>
-                                </tr>      
-                                @foreach($karma->unitIncome as $unit_income)
-                                    <tr>          
-                                        <td>{{ $unit_income->name }}</td> 
-                                        <td>{{ $unit_income->approx_price }}</td>
-                                        <td>{{ $unit_income->approx_annual_sale }}</td>
-                                        <td>{{ $unit_income->total_expense }}</td> 
-                                    </tr>
-                               @endforeach
-                                </table>
+                    <th><strong>चालु पूंजी/सम्पत्ति (चालु सम्पत्ति)</strong></th>
+                    <th><strong> चालु पूंजी/सम्पत्ति (अनुमानित मूल्य)</strong></th>
+                    <th><strong> चालु पूंजी/सम्पत्ति (विवरण)</strong></th>
+                    <th><strong> चालु पूंजी/सम्पत्ति (कैफियत)</strong></th>
 
-                                <table>
-                                    <tr>
-                                        <th><strong> बार्षिक संचालन खर्च (नाम)</strong></th>
-                                        <th><strong> बार्षिक संचालन खर्च  (अनुमानित मूल्य)</strong></th>
-                                        <th><strong> बार्षिक संचालन खर्च  (अनुमानित बार्षिक बिक्रि)</strong></th>
-                                        <th><strong> बार्षिक संचालन खर्च  (जम्मा खर्च)</strong></th>
-                                    </tr>      
-                                    @foreach($karma->annualOperationCost as $annual_cost)
-                                        <tr>          
-                                            <td>{{ $annual_cost->name }}</td> 
-                                            <td>{{ $annual_cost->approx_price }}</td>
-                                            <td>{{ $annual_cost->approx_annual_sale }}</td>
-                                            <td>{{ $annual_cost->total_expense }}</td> 
-                                        </tr>
-                                   @endforeach
-                                    </table>
+                    @foreach($karma->runningCapital as $running_capital)
+                    <tr>
+                        <td>{{ $running_capital->running_property }}</td>
+                        <td>{{ $running_capital->approx_price }}</td>
+                        <td>{{ $running_capital->details }}</td>
+                        <td>{{ $running_capital->remarks }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+
+                <table>
+                    <tr>
+                        <th><strong>प्रति इकाई खर्चको विवरण (नाम)</strong></th>
+                        <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित मूल्य)</strong></th>
+                        <th><strong> प्रति इकाई खर्चको विवरण (अनुमानित बार्षिक उत्पादन)</strong></th>
+                        <th><strong> प्रति इकाई खर्चको विवरण (जम्मा खर्च)</strong></th>
+                    </tr>
+                    @foreach($karma->unitExpense as $unit_expense)
+                    <tr>
+                        <td>{{ $unit_expense->name }}</td>
+                        <td>{{ $unit_expense->approx_price }}</td>
+                        <td>{{ $unit_expense->approx_annual_production }}</td>
+                        <td>{{ $unit_expense->total_expense }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+
+                <table>
+                    <tr>
+                        <th><strong>प्रति इकाई आम्दानीको विवरण (नाम)</strong></th>
+                        <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित मूल्य)</strong></th>
+                        <th><strong> प्रति इकाई आम्दानीको विवरण (अनुमानित बार्षिक बिक्रि)</strong></th>
+                        <th><strong> प्रति इकाई आम्दानीको विवरण (जम्मा खर्च)</strong></th>
+                    </tr>
+                    @foreach($karma->unitIncome as $unit_income)
+                    <tr>
+                        <td>{{ $unit_income->name }}</td>
+                        <td>{{ $unit_income->approx_price }}</td>
+                        <td>{{ $unit_income->approx_annual_sale }}</td>
+                        <td>{{ $unit_income->total_expense }}</td>
+                    </tr>
+                    @endforeach
+                </table>
+
+                <table>
+                    <tr>
+                        <th><strong> बार्षिक संचालन खर्च (नाम)</strong></th>
+                        <th><strong> बार्षिक संचालन खर्च (अनुमानित मूल्य)</strong></th>
+                        <th><strong> बार्षिक संचालन खर्च (अनुमानित बार्षिक बिक्रि)</strong></th>
+                        <th><strong> बार्षिक संचालन खर्च (जम्मा खर्च)</strong></th>
+                    </tr>
+                    @foreach($karma->annualOperationCost as $annual_cost)
+                    <tr>
+                        <td>{{ $annual_cost->name }}</td>
+                        <td>{{ $annual_cost->approx_price }}</td>
+                        <td>{{ $annual_cost->approx_annual_sale }}</td>
+                        <td>{{ $annual_cost->total_expense }}</td>
+                    </tr>
+                    @endforeach
+                </table>
             </td>
             <td>
-                
+
             </td>
-            <td> 
-                
+            <td>
+
             </td>
-            <td> 
-                
+            <td>
+
             </td>
-            <td> 
-                
+            <td>
+
             </td>
-            <td> 
-                
+            <td>
+
             </td>
-            <td> 
-                
-            </td>                                                        
+            <td>
+
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -13,6 +13,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="{{asset('front/assets/css/bootstrap.min.css')}}">
 		<link rel="stylesheet" href="{{asset('front/assets/css/manual.css')}}">
+		<link rel="stylesheet" href="{{asset('front/assets/css/header.css')}}">
 		<link rel="stylesheet" type="text/css" href="{{asset('front/assets/css/animate.css')}}">
 		<link rel="stylesheet" href="{{asset('front/assets/css/owlcarousel/owl.carousel.min.css')}}">
 		<link rel="stylesheet" href="{{asset('front/assets/css/owlcarousel/owl.theme.default.min.css')}}">
@@ -39,6 +40,26 @@
 		<link rel="stylesheet" href="{{asset('front/assets/css/css-fontello/fontello-ie7.css')}}" type="text/css" />
 		<link rel="stylesheet" href="{{asset('front/assets/css/css-fontello/fontello-ie7-codes.css')}}"
 			type="text/css" />
+
+		{{-- new header links --}}
+		<!-- Latest compiled and minified CSS -->
+		{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+			integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> --}}
+
+		{{-- <!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+			integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+			integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous">
+		</script> --}}
+
+
+		{{-- datatables link	 --}}
+		<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+		<script src="{{asset('panel/assets/libs/datatables/dataTables.keyTable.min.js')}}"></script>
+		<script src="{{asset('panel/assets/libs/datatables/dataTables.select.min.js')}}"></script>
 
 		<!-- End Google Tag Manager -->
 	</head>
@@ -84,241 +105,284 @@
 		}
 	</style> --}}
 
-	<body >
+	<body>
 
 		<div class="page">
-
-			<!--=============================== Header ===========================-->
-			<header class="header-block black top-bar">
-				<div class="container-fluid">
-					<div class="row notice">
-
-					
-						<div class="col-md-2 col-xs-6 col-sm-6  notice_title ">
-							<h4>Notices</h4> &nbsp;<span class="fa fa-caret-right fa-2x"></span>
-						</div>
-						<div class="col-xs-4 col-sm-4  notice_slider ">
-							@foreach($notices as $n)
-							<p><a href="{{ url('notice/detail/'.$n->id) }}">{{ $n->title }}</a></p>
-							@endforeach
-						</div>
-						<div class="col-xs-3 col-sm-3   ph_no lh pl-0 pr-0 ">
-							<img src="/images/whatsapp.png" height="20px" width="20px">
-							<a href='https://wa.me/977{{ $setting->whatsapp_number }}'
-								target="_blank">{{ $setting->whatsapp_number }}</a>
-						</div>
-						<div class="col-xs-3 col-sm-3  login lh pl-0 pr-0 ">
-							<a href="{{ url('pdf') }}"><span>Downloads</span></a>
-						</div>
-
-						<div class="col-xs-2 col-sm-2  login lh pl-0 pr-0 ">
-
-							@if(Auth::user() && Auth::user()->role != 'admin')
-							<span> <i class="fa fa-user" aria-hidden="true"></i> {{Auth::user()->fname}} </span>
-							<i class="fa fa-lock" aria-hidden="true"></i>
-							<a class="get" href="{{ route('logout') }}" onclick="event.preventDefault();
-						document.getElementById('logout-form').submit();">
-								{{ __('Logout') }}
-							</a>
-							<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-								@csrf
-							</form>
-
-							@elseif(Auth::user() && Auth::user()->role == 'admin')
-							<a href="{{url('/login')}}">Go to Dashboard </a>
-
-							@else
-							<a href="{{url('/login')}}">Login</a>
-							@endif
-						</div>
-					</div>
-				</div>
-			</header>
-
-			<!--=============================== Menu-Bar ========================-->
-			<div class="menuBar">
-				<div class="container-fluid">
-					<div class="row nav-responsive">
-						<div class="col-md-2 col-sm-2">
-							<div class="navbar-header">
-								<div class="logo">
-									<a href="{{url('/')}}" class="navbar-brand">
-										<img src="{{asset('front/assets/images/logo-Garikhane_Final.png')}}"
-											alt="Homepage logo">
-									</a>
-								</div>
-								<div>
-								<a href="#" class="navbar-toggle collapsed m-0" data-toggle="collapse"
-									data-target="#navbar-menu">
-									Menu
-								</a>
+			<header>
+				<section class="header-block top-bar">
+					<div class="container-fluid">
+						<div class="row header-top">
+							<div class="col-md-2 notice-title hidden-xs">
+								<h4>Notices</h4> &nbsp;<span class="fa fa-caret-right fa-2x"></span>
 							</div>
+							<div class="col-md-6 notice-slider ">
+								@foreach($notices as $n)
+								<p>
+									<a href="{{ url('notice/detail/'.$n->id) }}">{{ $n->title }}</a>
+								</p>
+								@endforeach
 							</div>
-						</div>
-						<div class="col-md-8 col-sm-12">
-							<nav class="navbar navbar-default " id="navbar">
-								<div class="navbar-middle">
-									<div id="navbar-menu" class="collapse navbar-collapse ">
-										<ul class="nav navbar-nav" data-in="fadeInDown" data-out="fadeOutUp">
-											<li class="dropdown first_dropdown" id="dt-1">
-												<a href="#"  class="dropdown-toggle dt-1" data-toggle="dropdown" role="button"
-													aria-expanded="false">हाम्रो बारेमा</a>
-												<ul class="dropdown-menu first_dropdown_menu dm-1" role="menu">
-													<li><a href="{{url('aboutus')}}">परिचय</a></li>
-													<li><a href="{{url('boardmember')}}">विशेष समिति</a></li>
-													<li class="second-dropdown dropdown dt-6"><a href="#" class="dropdown-toggle" data-toggle="second-dropdown-menu" role="menu"
-														aria-expanded="false">प्रदेश समिति <i
-																class="fa fa-caret-right pull-right"></i></a>
-														<ul class="second-dropdown-menu dropdown-menu dm-6" role="menu">
-															<li><a
-																	href="{{ url('state1/commite') }}">प्रदेश नं १</a>
-															</li>
-															<li><a
-																	href="{{ url('state2/commite') }}">प्रदेश नं २</a>
-															</li>
-															<li><a
-																	href="{{ url('bagmati/commite') }}">बागमती प्रदेश
-																</a></li>
-															<li><a
-																	href="{{ url('gandaki/commite') }}">गण्डकी प्रदेश
-																</a></li>
-															<li><a
-																	href="{{ url('lumbini/commite') }}">लुम्बिनी
-																	प्रदेश</a></li>
-															<li><a
-																	href="{{ url('karnali/commite') }}">कर्णाली
-																	प्रदेश</a></li>
-															<li><a
-																	href="{{ url('sudurpaschim/commite') }}">सुदुरपश्चिम
-																	प्रदेश</a></li>
-														</ul>
-													</li>
-													<li><a href="{{url('commitemember')}}">व्यवस्थापन (सचिवालय)</a></li>
-												</ul>
-											</li>
-
-											<li class="dropdown first_dropdown">
-												<a href="#" class="dropdown-toggle dt-2" data-toggle="dropdown" role="button"
-													aria-expanded="false">अभियान </a>
-												<ul class="dropdown-menu first_dropdown_menu dm-2" role="menu">
-													@if($Programs)
-													@foreach($Programs as $p)
-													<li><a href="{{url('program/'.$p->id)}}">{{$p->title}} </a></li>
-													@endforeach
-													@endif
-
-												</ul>
-											</li>
-											<!--<li class="dropdown">-->
-											<!--    <a href="#" class="dropdown-toggle" data-toggle="dropdown"-->
-											<!--       role="button" aria-expanded="false" title="Our causes">रोजगार</a>-->
-											<!--    <ul class="dropdown-menu" role="menu">-->
-											<!--        <li><a href="{{url('jobs')}}">रोजगार </a></li>-->
-											<!--        <li><a href="{{url('job/provider')}}">रोजगार प्रदायक</a></li>-->
-											<!--    </ul>-->
-											<!--</li>-->
-											<li class="dropdown first_dropdown">
-												<a href="#" class="dropdown-toggle dt-3" data-toggle="dropdown" role="button"
-													aria-expanded="false">परियोजना</a>
-												<ul class="dropdown-menu first_dropdown_menu dm-3" role="menu">
-
-													<!--<li><a href="{{url('garkhanne/project')}}">गरीखाने प्रोजेक्ट</a></l
-											i>-->
-													<li><a href="{{url('garikhane-app-form')}}">परियोजनाको आवेदन
-															फारम</a></li>
-													<li><a href="{{url('project/idea/bank?project_id=0')}}">प्रोजेक्ट आइडिया बैंक</a></li>
-													<li><a href="{{url('entrepreneurship')}}">उद्यमशीलताको प्रक्रिया</a>
-													</li>
-													{{-- <li><a href="{{url('project/idea/bank?project_id=1')}}">लगानीको
-													लागि तयार</a>
-											</li> --}}
-											{{-- <li><a href="{{url('project/idea/bank?project_id=2')}}">प्रशिक्षण स्टेज
-											परियोजनाहरु</a></li> --}}
-											{{-- <li><a href="{{url('project/idea/bank?project_id=3')}}">व्यवसाय चरण
-											परियोजनाहरूको लागि योजना</a></li> --}}
-											{{-- <li><a href="{{url('project/idea/bank?project_id=4')}}">परियोजनाहरू जुन
-											बैंक र वित्तीय संस्थामा पुगेका छन्
-											</a></li> --}}
-
-											<!--<li><a href="{{url('banking')}}">बै्क</a></li>-->
-										</ul>
-										</li>
-										{{-- <li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown"
-										role="button" aria-expanded="false">रोजगारी </a>
-										<ul class="dropdown-menu" role="menu">
-											<li><a href="{{url('job/provider')}}">रोजगारदाता </a></li>
-										<li><a href="{{url('jobs')}}">रोजगारी खोज्ने</a></li>
-
-										</ul>
-										</li> --}}
-										<li class="{{ (request()->is('events')) ? 'active' : '' }}"><a
-												href="{{url('events')}}">कार्यक्रम</a></li>
-										{{-- <li class="{{ (request()->is('pdf')) ? 'active' : '' }}"><a
-												href="{{url('pdf')}}">डाउनलोड</a></li> --}}
-
-										<!--<li class="dropdown">-->
-										<!--    <a href="#" class="dropdown-toggle" data-toggle="dropdown"-->
-										<!--       role="button" aria-expanded="false" title="News">Get Involved</a>-->
-										<!--    <ul class="dropdown-menu" role="menu">-->
-										<!--        <li><a href="{{url('mentor')}}">Mentor Form</a></li>-->
-										<!--        <li><a href="{{url('entreprenure')}}">Enterprenure Form</a></li>-->
-
-										<!--    </ul>-->
-										<!--</li>-->
-
-
-										<li class="dropdown first_dropdown">
-											<a href="#" class="dropdown-toggle dt-4" data-toggle="dropdown" role="button"
-												aria-expanded="false">मिडिया ग्यालरी </a>
-											<ul class="dropdown-menu first_dropdown_menu dm-4" role="menu">
-
-												<li><a href="{{url('image-category')}}">तस्बिर पुस्तिका</a></li>
-												<li><a href="{{url('notice')}}">सूचना</a></li>
-												<li><a href="{{url('press')}}">प्रेस विज्ञप्ति</a></li>
-												<li><a href="{{url('news')}}">समाचार</a></li>
-
-
-											</ul>
-										</li>
-										<li class="dropdown first_dropdown">
-											<a href="#" class="dropdown-toggle dt-5" data-toggle="dropdown" role="button"
-												aria-expanded="false">अन्य</a>
-											<ul class="dropdown-menu first_dropdown_menu dm-5" role="menu">
-												<li><a href="{{url('link')}}">महत्वपूर्ण लिंक</a></li>
-												<li><a href="https://www.karmabhoomisamaj.com/" target="_blank">कर्मभूमि
-														समाज</a></li>
-												<li><a href="{{url('partners')}}">साझेदार संस्था</a></li>
-												<li><a href="{{url('testimonial')}}">सान्दर्भिक भनाईहरु</a></li>
-												<li><a href="{{url('faq')}}">बारम्बार सोधिने प्रश्नहरु</a></li>
-
-											</ul>
-										</li>
-
-										<li class="last {{ (request()->is('contactus')) ? 'active' : '' }}"><a
-												href="{{url('contactus')}}">सम्पर्क</a></li>
-										</ul>
-									</div>
-
-
-								</div>
-							</nav>
-						</div>
-						<div class="col-md-2 col-sm-3 col-xs-4 top-right-btn">
-							<ul class="top-right-icon">
-
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->facebook }}"><img src="/images/social_icons/facebook.png"></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->instagram }}"><img src="/images/social_icons/instagram.png"></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->twitter }}"><img src="/images/social_icons/twitter.png"></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->linkedin }}"><img src="/images/social_icons/linkedin.png"></a></li>
-								<li><a class="top-right-icons" target="_blank" href="{{ $setting->youtube }}"><img src="/images/social_icons/youtube.png"></a></li>
-								<li><a class="top-right-icons" target="_blank" href="mailto:{{ $setting->gmail }}"><img src="/images/social_icons/gmail.png"></a></li>
+							{{-- <div class="col-md-1 download-button">
+								<ul class="m-0">
+									<li class="">
+										<a href="{{ url('pdf') }}">Downloads</a>
+							</li>
 							</ul>
+						</div> --}}
+						<div class="col-md-3 more-info ">
+
 							<ul>
-								<li><a href="{{ url('garikhane-form') }}" class=" btn btn-outline-secondary red-btn">परियोजनाको फारम</a></li>
+								<li class="ph-no">
+									<i class="whatsapp fab fa-whatsapp fa-2x "></i><a
+										href='https://wa.me/977{{ $setting->whatsapp_number }}'
+										target="_blank">{{ $setting->whatsapp_number }}</a>
+								</li>
+								<li class="">
+									<a href="{{ url('pdf') }}">Downloads</a>
+								</li>
+								<li class="">
+									@if(Auth::user() && Auth::user()->role != 'admin')
+									<span> <i class="fa fa-user" aria-hidden="true"></i> {{Auth::user()->fname}}
+									</span>
+									<i class="fa fa-lock" aria-hidden="true"></i>
+									<a class="get" href="{{ route('logout') }}" onclick="event.preventDefault();
+											document.getElementById('logout-form').submit();">
+										{{ __('Logout') }}
+									</a>
+									<form id="logout-form" action="{{ route('logout') }}" method="POST"
+										style="display: none;">
+										@csrf
+									</form>
+
+									@elseif(Auth::user() && Auth::user()->role == 'admin')
+									<a href="{{url('/login')}}">Go to Dashboard </a>
+
+									@else
+									<a href="{{url('/login')}}">Login</a>
+									@endif
+								</li>
 							</ul>
 						</div>
+						<div class="dropdown">
+							<a class="downloads" href="{{ url('pdf') }}">Downloads</a>
+							<button onclick="myFunction()" class="dropbtn">More</button>
+							<div id="myDropdown" class="dropdown-content">
+								<ul>
+									<li class="ph-no">
+										<a href='https://wa.me/977{{ $setting->whatsapp_number }}' target="_blank">
+											<i
+												class="whatsapp fab fa-whatsapp fa-2x "></i>{{ $setting->whatsapp_number }}</a>
+									</li>
 
+									<li class="">
+										@if(Auth::user() && Auth::user()->role != 'admin')
+										<span> <i class="fa fa-user" aria-hidden="true"></i> {{Auth::user()->fname}}
+										</span>
+										<i class="fa fa-lock" aria-hidden="true"></i>
+										<a class="get" href="{{ route('logout') }}" onclick="event.preventDefault();
+						document.getElementById('logout-form').submit();">
+											{{ __('Logout') }}
+										</a>
+										<form id="logout-form" action="{{ route('logout') }}" method="POST"
+											style="display: none;">
+											@csrf
+										</form>
+
+										@elseif(Auth::user() && Auth::user()->role == 'admin')
+										<a href="{{url('/login')}}">Go to Dashboard </a>
+
+										@else
+										<a href="{{url('/login')}}">Login</a>
+										@endif
+									</li>
+								</ul>
+							</div>
+						</div>
+
+
+					</div>
+		</div>
+
+		</section>
+
+
+		<section class="menubar">
+			<div class="container-fluid">
+				<div class="row nav-responsive">
+					<div class="col-md-2 col-sm-6 col-xs-4 left">
+
+						<div class="logo">
+							<a href="{{ url('/') }}">
+								<img src="/front/assets/images/logo-Garikhane_Final.png" class="img-responsive"
+									alt="Homepage logo">
+							</a>
+						</div>
+
+					</div>
+
+					<div class="visible-sm visible-xs col-sm-6 col-xs-6 top-right-btn right">
+						<ul class="top-right-icon">
+
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->facebook }}"><img
+										src="/images/social_icons/facebook.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->instagram }}"><img
+										src="/images/social_icons/instagram.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->twitter }}"><img
+										src="/images/social_icons/twitter.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->linkedin }}"><img
+										src="/images/social_icons/linkedin.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->youtube }}"><img
+										src="/images/social_icons/youtube.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="mailto:{{ $setting->gmail }}"><img
+										src="/images/social_icons/gmail.png"></a>
+							</li>
+						</ul>
+						<ul>
+							<li><a href="{{ url('garikhane-form') }}"
+									class=" btn btn-outline-secondary red-btn">परियोजनाको फारम</a></li>
+						</ul>
+					</div>
+					<div class="col-md-8  col-sm-12 col-xs-2 center1 ">
+						<nav>
+							<label for="drop" class="toggle">&#8801; </label>
+							<input type="checkbox" id="drop" />
+							<ul class="menu">
+								<li>
+									<!-- First Tier Drop Down -->
+									<a href="#" class="dt-1">हाम्रो बारेमा</a>
+									<ul class="dm-1">
+										<li><a href="{{url('aboutus')}}">परिचय</a></li>
+										<li><a href="{{url('boardmember')}}">विशेष समिति</a></li>
+										<li>
+
+											<!-- Second Tier Drop Down -->
+											<a href="#" class="dt-2">प्रदेश समिति</a>
+											<ul class="dm-2">
+												<li><a href="{{ url('state1/commite') }}">प्रदेश नं १</a></li>
+												<li><a href="{{ url('state2/commite') }}">प्रदेश नं २</a></li>
+												<li><a href="{{ url('bagmati/commite') }}">बागमती प्रदेश</a>
+												</li>
+												<li><a href="{{ url('gandaki/commite') }}">गण्डकी प्रदेश</a>
+												</li>
+												<li><a href="{{ url('lumbini/commite') }}">लुम्बिनी प्रदेश</a>
+												</li>
+												<li><a href="{{ url('karnali/commite') }}">कर्णाली प्रदेश</a>
+												</li>
+												<li><a href="{{ url('sudurpaschim/commite') }}">सुदुरपश्चिम
+														प्रदेश</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="{{url('commitemember')}}">व्यवस्थापन (सचिवालय)</a></li>
+
+									</ul>
+
+								</li>
+								<li>
+									<!-- First Tier Drop Down -->
+									<a href="#" class="dt-3">अभियान </a>
+									<ul class="dm-3">
+										@if($Programs)
+										@foreach($Programs as $p)
+										<li><a href="{{url('program/'.$p->id)}}">{{$p->title}} </a></li>
+										@endforeach
+										@endif
+									</ul>
+								</li>
+								<li>
+
+									<!-- First Tier Drop Down -->
+									<a href="#" class="dt-4">परियोजना</a>
+									<ul class="dm-4">
+										<li><a href="{{url('garikhane-app-form')}}">परियोजनाको आवेदन फारम</a>
+										</li>
+										<li><a href="{{url('project/idea/bank?project_id=0')}}">प्रोजेक्ट आइडिया
+												बैंक</a></li>
+										<li><a href="{{url('running-projects')}}">चालु परियोजना</a></li>
+										<li><a href="{{url('entrepreneurship')}}">उद्यमशीलताको प्रक्रिया</a>
+										</li>
+									</ul>
+								</li>
+								<li class="{{ (request()->is('events')) ? 'active' : '' }}"><a
+										href="{{url('events')}}">कार्यक्रम</a></li>
+								<li class="dt-5">
+									<!-- First Tier Drop Down -->
+									<a href="#">मिडिया ग्यालरी</a>
+
+									<ul class="dm-5">
+										<li><a href="{{url('image-category')}}">तस्बिर पुस्तिका</a></li>
+										<li><a href="{{url('notice')}}">सूचना</a></li>
+										<li><a href="{{url('press')}}">प्रेस विज्ञप्ति</a></li>
+										<li><a href="{{url('news')}}">समाचार</a></li>
+									</ul>
+								</li>
+								<li class="dt-6">
+
+									<!-- First Tier Drop Down -->
+
+									<a href="#">अन्य</a>
+									<ul class="dm-6">
+										<li><a href="{{url('link')}}">महत्वपूर्ण लिंक</a></li>
+										<li><a href="https://www.karmabhoomisamaj.com/" target="_blank">कर्मभूमि
+												समाज</a></li>
+										<li><a href="{{url('partners')}}">साझेदार संस्था</a></li>
+										<li><a href="{{url('testimonial')}}">सान्दर्भिक भनाईहरु</a></li>
+										<li><a href="{{url('faq')}}">बारम्बार सोधिने प्रश्नहरु</a></li>
+									</ul>
+								</li>
+
+								<li>
+									<a href="{{url('contactus')}}">सम्पर्क</a></li>
+							</ul>
+
+						</nav>
+					</div>
+
+					<div class="col-md-2  hidden-sm hidden-xs top-right-btn right">
+						<ul class="top-right-icon">
+
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->facebook }}"><img
+										src="/images/social_icons/facebook.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->instagram }}"><img
+										src="/images/social_icons/instagram.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->twitter }}"><img
+										src="/images/social_icons/twitter.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->linkedin }}"><img
+										src="/images/social_icons/linkedin.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="{{ $setting->youtube }}"><img
+										src="/images/social_icons/youtube.png"></a>
+							</li>
+							<li>
+								<a class="top-right-icons" target="_blank" href="mailto:{{ $setting->gmail }}"><img
+										src="/images/social_icons/gmail.png"></a>
+							</li>
+						</ul>
+						<ul>
+							<li><a href="{{ url('garikhane-form') }}"
+									class=" btn btn-outline-secondary red-btn">परियोजनाको फारम</a></li>
+						</ul>
 					</div>
 				</div>
 			</div>
+		</section>
+		</header>

@@ -8,10 +8,6 @@
     background-repeat: no-repeat;">
         <div class="shadow-main">
             <h1> तस्बिर पुस्तिका</h1>
-            <ul class="breadcrumb breadcrumb-news">
-                <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                <li><a>तस्बिर पुस्तिका</a></li>
-            </ul>
         </div>
     </div>
 

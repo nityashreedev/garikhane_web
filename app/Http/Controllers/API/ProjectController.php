@@ -123,14 +123,14 @@ class ProjectController extends Controller
          * method: get
          *
          * */
-        $projectideabank = ProjectBankIdea::orderBy('created_at','desc')->where('project_id',$request->project_id)->take(10)->get();
+        // $projectideabank = ProjectBankIdea::orderBy('created_at','desc')->where('project_id',$request->project_id)->take(10)->get();
         if($request->page == 1)
                 {
-                     $projectideabank = ProjectBankIdea::orderBy('created_at','desc')->where('project_id',$request->project_id)->take(10)->get();
+                     $projectideabank = ProjectBankIdea::take(10)->get();
                 }
              elseif($request->page != 1){
                      $skip = 10 * $request->page -10;
-                    $projectideabank = ProjectBankIdea::orderBy('created_at','desc')->where('project_id',$request->project_id)->skip($skip)->take(10)->get();
+                    $projectideabank = ProjectBankIdea::skip($skip)->take(10)->get();
                      if( count($projectideabank) < 1){
  
                         $response = [
@@ -155,6 +155,9 @@ class ProjectController extends Controller
                     'title' => $item->name,
                     'sector' => $item->sector,
                     'location' => $item->location,
+                    'reference'=>$item->reference,
+                    'file'=>$item->pdf? url('images/projectbank/pdf/'.$item->pdf):'',
+                    'link'=>$item->link? $item->link:'',
                     'image' =>url('images/projectbank/'.$item->image),
                 ];
             }

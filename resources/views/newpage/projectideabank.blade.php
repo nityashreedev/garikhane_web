@@ -15,10 +15,6 @@
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1> प्रोजेक्ट आइडिया बैंक</h1>
-        <ul class="breadcrumb breadcrumb-news">
-            <li><a href="{{url('/')}}">गृहपृष्ठ </a></li>
-            <li><a>{{$header}}</a></li>
-        </ul>
     </div>
 </div>
 

@@ -27,24 +27,16 @@ class ProjectBankController extends Controller
         $request->validate([
            
             'image' => 'sometimes|required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'name' => 'required'
+            'name' => 'required',
+            'pdf' => 'sometimes|nullable|mimes:doc,docx,pdf'
+            
         ]);
          
-    
         $data['name'] = $request->get('name');
-        $data['description'] = $request->get('description');
         $data['sector'] = $request->get('sector');
-        $data['meta_title'] = $request->get('meta_title');
-        $data['meta_description'] = $request->get('meta_desc');
-        $data['project_component'] = $request->get('project_component');
-        $data['market_opportunity'] = $request->get('market_opportunity');
-        $data['success_example'] = $request->get('success_example');
-        $data['project_cost'] = $request->get('project_cost');
-        $data['location'] = $request->get('location');
         $data['reference'] = $request->get('reference');
-        $data['d_i_modality'] = $request->get('d_i_modality');
         $data['project_id'] = $request->get('project_id');
-        $data['irr'] = $request->get('irr');
+        $data['link'] = $request->get('link');
         if($file = $request->file('image')) {
             $name = time().time().'.'.$file->getClientOriginalExtension();
             $target_path = public_path('/images/projectbank/');
@@ -54,31 +46,19 @@ class ProjectBankController extends Controller
                     $data['image']  = $name;
                 }
             }
-            if($file = $request->file('bgimage')) {
-                $name = time().'.'.$file->getClientOriginalExtension();
-                $target_path = public_path('/images/projectbank/bg/');
-               
-                    if($file->move($target_path, $name)) {
-                       
-                        $data['bgimage']  = $name;
-                    }
-                }
             
-            if($file = $request->file('pdf')) {
-                $name = time().'.'.$file->getClientOriginalExtension();
+            if($pdfFile = $request->file('pdf')) {
+                $namePdf = time().'.'.$pdfFile->getClientOriginalExtension();
                 $target_path = public_path('/images/projectbank/pdf/');
-               
-                    if($file->move($target_path, $name)) {
-                       
-                        $data['pdf']  = $name;
-                    }
+                if($pdfFile->move($target_path, $namePdf)) 
+                {  
+                    $data['pdf']  = $namePdf;
                 }
+            }
        
-                ProjectBankIdea::create($data);
-    
-        
-         $request->session()->flash('success','Project created');
-         return redirect('admin/project/idea/bank');
+        ProjectBankIdea::create($data);
+        $request->session()->flash('success','Project created');
+        return redirect('admin/project/idea/bank');
     }
 
     public function edit($id)
@@ -97,6 +77,8 @@ class ProjectBankController extends Controller
         $request->validate([
            
             'image' => 'sometimes|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name'=> 'required',
+            'pdf' => 'sometimes|nullable|mimes:doc,docx,pdf'
             
         ]);
 
@@ -105,20 +87,10 @@ class ProjectBankController extends Controller
        
         $projectidea->name = $request->get('name');
         $projectidea->sector = $request->get('sector');
-        $projectidea->description = $request->get('description');
-        $projectidea->location = $request->get('location');
         $projectidea->project_id = $request->get('project_id');
-        $projectidea->project_component = $request->get('project_component');
-        $projectidea->market_opportunity = $request->get('market_opportunity');
-        $projectidea->success_example = $request->get('success_example');
-        $projectidea->d_i_modality = $request->get('d_i_modality');
-        $projectidea->project_cost = $request->get('project_cost');
-        $projectidea->irr = $request->get('irr');
         $projectidea->reference = $request->get('reference');
-       
+        $projectidea->link = $request->get('link');
 
-        $projectidea->meta_title = $request->get('meta_title');
-        $projectidea->meta_description = $request->get('meta_description');
         if($file = $request->file('image')) {
             $name = time().time().'.'.$file->getClientOriginalExtension();
             $target_path = public_path('/images/projectbank/');
@@ -127,31 +99,17 @@ class ProjectBankController extends Controller
                     $projectidea->image  = $name;
                 }
             }
-            if($file = $request->file('bgimage')) {
-                $name = time().'.'.$file->getClientOriginalExtension();
-                $target_path = public_path('/images/projectbank/bg/');
-               
-                    if($file->move($target_path, $name)) {
-                       
-                        $projectidea->bgimage  = $name;
-                    }
-                }
-            if($file = $request->file('pdf')) {
-                $name = time().'.'.$file->getClientOriginalExtension();
+            if($pdfFile = $request->file('pdf')) {
+                $namePdf = time().'.'.$pdfFile->getClientOriginalExtension();
                 $target_path = public_path('/images/projectbank/pdf/');
                
-                    if($file->move($target_path, $name)) {
-                       
-                        $projectidea->pdf  = $name;
+                    if($pdfFile->move($target_path, $namePdf)) {
+                        $projectidea->pdf  = $namePdf;
                     }
                 }
             $projectidea->update();
             $request->session()->flash('success','Project Updated');
-
-            return redirect('admin/project/idea/bank');
-           
-
-
+            return redirect('admin/project/idea/bank');  
     }
 
     public function delete($id, Request $request)

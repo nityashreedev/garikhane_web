@@ -50,10 +50,7 @@ class DashboardController extends Controller
          $request->session()->flash('success','contact deleted  sucessfully');
 
          return redirect('admin/contact/enquire');
-        
-        
     }
-
 
     public function contactinquirecsv()
     {
@@ -81,7 +78,7 @@ class DashboardController extends Controller
             foreach ($contact as $task) {
                 $row['name']  = $task->name;
                 $row['email']    = $task->email;
-                 $row['address']    = $task->address;
+                $row['address']    = $task->address;
                 $row['phone']  = $task->phone;
                 $row['message']  = $task->enquiry;
                 $row['created_at']  = $task->created_at;

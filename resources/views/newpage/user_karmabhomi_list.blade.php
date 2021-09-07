@@ -107,41 +107,41 @@
 		<div class="shadow-main">
 			<h1> परियोजनाको आवेदन फारम</h1>
 			<ul class="breadcrumb breadcrumb-news">
-				<li><a href="{{url('/')}}">HOME</a></li>
-				<li><a href="index.html">परियोजनाको आवेदन फारम
-						आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ ।</a></li><br>
-				<li><a>ठेगाना: {{ $setting->address }}  </a></li>
-				<li><a>सम्पर्क नम्बर: {{ $setting->phone }}</a></li>
+				<li><a> आवेदन फाराम भर्दा कुनै समस्या भएमा निम्न ठेगानामा संम्पर्क गर्न हुन अनुरोध छ |</a></li><br>
+				<li><a>ठेगाना: {{ $setting->address }} </a></li>
+				<li><a>सम्पर्क नम्बर: ९८४१९५०४५८ </a></li>
 			</ul>
 		</div>
 	</div>
-	@include('admin.flashmessage.message')
+
 
 	@if(isset($message))<h3 class="margintop">{{$message}}</h3>@endif
 	<section class="form-cont">
 		<div class="container">
 			<div class="row">
 				<table class="table table-striped">
-                    <thead>
-                        <th>नाम</th>
-                        <th>परियोजनाको नाम</th>
-                        <th>मिति</th>
-                    </thead>
-                    <tbody>
-                        @foreach($karmabhomis as $karmabhomi)
-                        <tr>
-                            <td>{{ $karmabhomi->name}}</td>
-                            <td>{{ $karmabhomi->ob3 }}</td>
-                            <td>{{ $karmabhomi->created_at->format('m/d/Y') }}</td>
-                        </tr>
-                        @endforeach
-                        <a href="{{ route('karmabhomi_form') }}" class="red-btn red-btn-0  pull-right">अर्को फारम भर्नुहोस्</a>
-                    </tbody>
-                </table>
+					<thead>
+						<th>नाम</th>
+						<th>परियोजनाको नाम</th>
+						<th>मिति</th>
+					</thead>
+					<tbody>
+						@foreach($karmabhomis as $karmabhomi)
+						<tr>
+							<td>{{ $karmabhomi->name}}</td>
+							<td>{{ $karmabhomi->ob3 }}</td>
+							<td>{{ $karmabhomi->created_at->format('m/d/Y') }}</td>
+						</tr>
+						@endforeach
+						<a href="{{ route('karmabhomi_form') }}" class="red-btn red-btn-0  pull-right">अर्को फारम
+							भर्नुहोस्</a>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</section>
 </div>
+
 
 
 @endsection

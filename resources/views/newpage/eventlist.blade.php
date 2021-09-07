@@ -9,10 +9,6 @@
         <div class="shadow-main">
             <div class="features-main">
                 <h1> कार्यक्रम</h1>
-                <ul class="breadcrumb breadcrumb-news">
-                    <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-                    <li><a>कार्यक्रम</a></li>
-                </ul>
             </div>
         </div>
     </div>

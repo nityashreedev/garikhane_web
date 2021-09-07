@@ -23,10 +23,6 @@
     background-repeat: no-repeat;">
     <div class="shadow-main">
         <h1>समाचार </h1>
-        <ul class="breadcrumb breadcrumb-news">
-            <li><a href="{{url('/')}}">गृहपृष्ठ</a></li>
-            <li><a> समाचार</a></li>
-        </ul>
     </div>
 </div>
 
